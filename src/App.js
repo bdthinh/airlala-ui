@@ -32,13 +32,12 @@ const App = ({ store, rehydrated }: AppPropsType) => (
     <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
       {rehydrated ? <div name="application">
         <Helmet
-          defaultTitle="MarketOI"
-          title="MarketOI"
+          defaultTitle="AirLala"
+          title="AirLala"
           links={[
             { rel: 'shortcut icon', type: 'image/png', href: '/favicon.png' },
           ]}
         />
-
         <Layout />
       </div> : null}
     </MuiThemeProvider>
@@ -52,7 +51,7 @@ const enhance = compose(
       // eslint-disable-next-line immutable/no-this
       persistStore(
         this.props.store,
-        { whitelist: ['cart', 'locationsDialog', 'session'] },
+        { whitelist: ['session'] },
         () => {
           this.props.completeRehydrated(true);
         },

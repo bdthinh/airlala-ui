@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-console
 console.info('using backend: %s', process.env.REACT_APP_BACKEND);
 
-const BASE_URL = process.env.REACT_APP_BACKEND || 'https://catalogue.marketoi.com/index.php/api';
+const BASE_URL = process.env.REACT_APP_BACKEND || '';
 
 export const ORDER_ENDPOINT = `${BASE_URL}/Front/order`;
 export const APP_SETTINGS_ENDPOINT = `${BASE_URL}/Front/settings`;
