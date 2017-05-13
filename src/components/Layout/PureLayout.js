@@ -4,11 +4,14 @@ import { grey200 } from 'material-ui/styles/colors';
 import css from 'css-template';
 import React from 'react';
 
+import Introduction from '../Introduction';
+
 type PureLayoutPropsType = {
   bigScreen: boolean,
 };
 
-const RenderNothing = always(null);
+export const RenderNothing = always(null);
+
 const pureLayoutStyles = css`
   background: ${grey200};
   min-height: 100vh;
@@ -25,7 +28,7 @@ const PureLayout = (
   <div style={pureLayoutStyles} offsetTop={0}>
     {bigScreen && 'AIRLALA on web application'}
     {!bigScreen && 'AIRLALA on mobile application'}
-    <Route exact path="/" component={RenderNothing} />
+    <Route exact path="/" component={Introduction} />
   </div>
 );
 
