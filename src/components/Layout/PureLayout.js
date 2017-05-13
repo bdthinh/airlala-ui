@@ -5,6 +5,7 @@ import css from 'css-template';
 import React from 'react';
 
 import Introduction from '../Introduction';
+import BottomNavigation from '../BottomNavigation';
 
 type PureLayoutPropsType = {
   bigScreen: boolean,
@@ -15,9 +16,6 @@ export const RenderNothing = always(null);
 const pureLayoutStyles = css`
   background: ${grey200};
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const PureLayout = (
@@ -25,10 +23,10 @@ const PureLayout = (
     bigScreen,
   }: PureLayoutPropsType,
 ) => (
-  <div style={pureLayoutStyles} offsetTop={0}>
-    {bigScreen && 'AIRLALA on web application'}
-    {!bigScreen && 'AIRLALA on mobile application'}
+  <div style={pureLayoutStyles}>
     <Route exact path="/" component={Introduction} />
+
+    <BottomNavigation bigScreen={bigScreen} />
   </div>
 );
 
