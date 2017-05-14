@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/stylesheet/react-slick-flex-support.css">
     <title>AirLaLa - Marketplace for travellers and artisans</title>
   </head>
   <body>
@@ -53,5 +54,18 @@
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script> -->
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyD3943z3AHYq6svO850thQNjTgdwf-4AqI",
+        authDomain: "airlala-7b1b2.firebaseapp.com",
+        databaseURL: "https://airlala-7b1b2.firebaseio.com",
+        projectId: "airlala-7b1b2",
+        storageBucket: "airlala-7b1b2.appspot.com",
+        messagingSenderId: "1002936018143"
+      };
+      firebase.initializeApp(config);
+    </script>
   </body>
 </html>
