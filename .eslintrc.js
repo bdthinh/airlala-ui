@@ -46,6 +46,7 @@ module.exports = {
     "no-useless-concat": "warn",
     "block-scoped-var": "error",
     "consistent-return": "error",
+    "import/named": 2,
     "react/jsx-filename-extension": 0,
     "react/no-unused-prop-types": 0
   }

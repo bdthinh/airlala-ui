@@ -1,14 +1,26 @@
 import { Router, Route } from 'react-router';
+import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import React from 'react';
 
 import history from '../../state/history';
 import PureLayout from './PureLayout';
 
-class Layout extends React.Component {
-  componentDidMount() {}
+import { enterHomePage } from './layout.state';
 
-  props: {};
+const connectToRedux = connect(
+  null,
+  { onEnterHomePage: enterHomePage },
+);
+
+class Layout extends React.Component {
+  componentDidMount() {
+    this.props.onEnterHomePage();
+  }
+
+  props: {
+    onEnterHomePage: Function,
+  };
 
   render() {
     return (
@@ -19,6 +31,7 @@ class Layout extends React.Component {
               {bigScreen => (
                 <PureLayout
                   bigScreen={bigScreen}
+                  onEnterHomePage={this.props.onEnterHomePage}
                 />
               )}
             </MediaQuery>
@@ -29,4 +42,4 @@ class Layout extends React.Component {
   }
 }
 
-export default Layout;
+export default connectToRedux(Layout);

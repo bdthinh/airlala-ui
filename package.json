@@ -61,7 +61,7 @@
     "uuid": "^3.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "REACT_APP_BACKEND=https://us-central1-airlala-7b1b2.cloudfunctions.net react-scripts start",
     "build": "react-scripts build",
     "prebuild": "echo \"{\\\"commit\\\": \\\"$(git rev-parse --verify HEAD)\\\"}\" > GIT_COMMIT.json",
     "prestart": "echo \"{\\\"commit\\\": \\\"DEVELOPMENT\\\"}\" > GIT_COMMIT.json",

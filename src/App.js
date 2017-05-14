@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { persistStore } from 'redux-persist';
 import { compose, withState, lifecycle } from 'recompose';
 
@@ -11,7 +12,7 @@ import Layout from './components/Layout';
 
 import THEME_CONFIG from './config/theme.json';
 
-const theme = {
+export const theme = {
   appBar: {
     color: THEME_CONFIG.colors.bar,
   },
@@ -29,7 +30,7 @@ type AppPropsType = {
 
 const App = ({ store, rehydrated }: AppPropsType) => (
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
+    <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
       {rehydrated ? <div name="application">
         <Helmet
           defaultTitle="AirLala"

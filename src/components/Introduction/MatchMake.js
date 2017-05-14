@@ -1,9 +1,9 @@
 import React from 'react';
 
 const MatchMake = () => (
-  <h1 style={{ textAlign: 'center' }}>
-    Match Make
-  </h1>
+  <div>
+    From the best artisans to local experiences, every gifts is handchosen just for your recipients.
+  </div>
 );
 
 export default MatchMake;

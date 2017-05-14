@@ -1,9 +1,9 @@
 import React from 'react';
 
 const EndService = () => (
-  <h1 style={{ textAlign: 'center' }}>
-    End Service
-  </h1>
+  <div>
+    Choose a gift and ready to get it from artisans with the best experiences.
+  </div>
 );
 
 export default EndService;

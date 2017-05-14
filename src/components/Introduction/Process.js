@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Process = () => (
-  <h1 style={{ textAlign: 'center' }}>
-    Process
-  </h1>
+  <div>
+    Give us a few details about your recipient...
+  </div>
 );
 
 export default Process;

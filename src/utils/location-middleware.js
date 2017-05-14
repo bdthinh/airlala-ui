@@ -11,7 +11,7 @@ export const middleware = () => next => (action) => {
   next(action);
 };
 
-export const navigatePage = href => ({
+export const navigateTo = href => ({
   type: LOCATION_NAVIGATION,
   payload: { href },
 });
