@@ -12,15 +12,19 @@ type OrderPropsType = {
 }
 
 const enhance = withProps(() => ({
-  onFindAGiftTouchTap: history.push('/select'),
+  onFindAGiftTouchTap: () => history.push('/select'),
 }));
 
 const Order = ({ onFindAGiftTouchTap }: OrderPropsType) => (
   <div>
     <ProfileButton />
-    AIRLALA
     <OrderList />
-    <RaisedButton primary label="FIND A GIFT" onTouchTap={onFindAGiftTouchTap} />
+    <div>AIRLALA</div>
+    <RaisedButton
+      primary
+      label="FIND A GIFT"
+      onTouchTap={onFindAGiftTouchTap}
+    />
   </div>
 );
 

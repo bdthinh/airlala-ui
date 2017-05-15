@@ -10,7 +10,7 @@ const ProfileButtonPropsType = {
 };
 
 const enhance = withProps(() => ({
-  onTouchTap: history.push('/profile'),
+  onTouchTap: () => history.push('/profile'),
 }));
 
 const ProfileButton = ({ onTouchTap }: ProfileButtonPropsType) => (
