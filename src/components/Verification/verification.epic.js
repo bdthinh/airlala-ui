@@ -7,6 +7,7 @@ import 'rxjs/add/operator/filter';
 import { ACTIONS } from 'redux-api-call';
 import { path, flow, eq } from 'lodash/fp';
 
+import { loginWithToken } from '../../state/firebase-auth';
 import { navigateTo } from '../../utils/location-middleware';
 import { saveCurrentUserWith } from '../SignUp/currentUser.state';
 
@@ -15,6 +16,10 @@ const saveToken = (action) => {
   return saveCurrentUserWith({ token });
 };
 
+const loginAfterVerifyWithToken = (action) => {
+  const token = path(action, 'payload.json.token');
+  return loginWithToken(token);
+};
 
 const isACompleteAction = flow(path('type'), eq(ACTIONS.COMPLETE));
 
@@ -25,19 +30,27 @@ const isVerificationAction = flow(
 
 const navigateProfilePage = navigateTo('/profile/edit');
 
-const navigateToHomePageIfVerificationSuccess = action$ =>
-  action$
-    .filter(isVerificationAction)
-    .filter(isACompleteAction)
-    .mapTo(navigateProfilePage);
-
 const saveTokenIfVerificationSuccess = action$ =>
   action$
     .filter(isVerificationAction)
     .filter(isACompleteAction)
     .map(saveToken);
 
+const loginWithTokenIfVerificationSucces = action$ =>
+  action$
+    .filter(isVerificationAction)
+    .filter(isACompleteAction)
+    .map(loginAfterVerifyWithToken);
+
+const navigateToHomePageIfVerificationSuccess = action$ =>
+  action$
+    .filter(isVerificationAction)
+    .filter(isACompleteAction)
+    .mapTo(navigateProfilePage);
+
+
 export default combineEpics(
+  loginWithTokenIfVerificationSucces,
+  saveTokenIfVerificationSuccess,
   navigateToHomePageIfVerificationSuccess,
-  saveTokenIfVerificationSuccess
 );

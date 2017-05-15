@@ -6,6 +6,8 @@ import FlatButton from 'material-ui/FlatButton';
 import css from 'css-template';
 import { createStructuredSelector } from 'reselect';
 
+import { signOut } from '../../state/firebase-auth';
+
 import {
   currentUserEmailSelector,
   currentUserPhoneSelector,
@@ -75,7 +77,10 @@ const Profile = ({
       <div><Link to="/terms">Terms & Privacy</Link></div>
       <div><Link to="/faqs">FAQs</Link></div>
       <div>
-        <FlatButton label="SIGN OUT" />
+        <FlatButton
+          label="SIGN OUT"
+          onTouchTap={signOut}
+        />
       </div>
       <div>
         V 1.0.1
