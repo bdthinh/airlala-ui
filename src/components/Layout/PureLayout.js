@@ -1,6 +1,6 @@
 import { Route } from 'react-router-dom';
 import always from 'lodash/fp/always';
-import { grey200 } from 'material-ui/styles/colors';
+import { grey50 } from 'material-ui/styles/colors';
 import css from 'css-template';
 import React from 'react';
 
@@ -12,7 +12,6 @@ import Chat from '../Chat';
 import SignUp from '../SignUp';
 import Verification from '../Verification';
 import Login from '../Login';
-import BottomNavigation from '../BottomNavigation';
 import Selection from '../Selection';
 import Profile from '../Profile';
 import ProfileEditForm from '../Profile/EditForm';
@@ -23,14 +22,10 @@ import FeedBack from '../Settings/FeedBack';
 import TermsAndConditions from '../Settings/TermsAndConditions';
 import Faqs from '../Settings/Faqs';
 
-type PureLayoutPropsType = {
-  bigScreen: boolean,
-};
-
 export const RenderNothing = always(null);
 
 const pureLayoutStyles = css`
-  background: ${grey200};
+  background: ${grey50};
   min-height: 100vh;
 `;
 
