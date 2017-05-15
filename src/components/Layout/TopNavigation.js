@@ -1,6 +1,7 @@
 import React from 'react';
 import css from 'css-template';
 import BackButton from './BackButton';
+import CancelButton from './CancelButton';
 
 export const COLORS = [
   '#ff4344',
@@ -38,13 +39,15 @@ const wrapperStyles = css`
 
 type TopNavigationPropsType = {
   headerText: string,
+  cancel: boolean,
 };
 
 const TopNavigation = ({
   headerText = 'Airlala',
+  cancel,
 }: TopNavigationPropsType) => (
   <div style={wrapperStyles}>
-    <BackButton />
+    {cancel ? <CancelButton /> : <BackButton />}
     <span style={logoStyles}>{headerText}</span>
   </div>
 );
