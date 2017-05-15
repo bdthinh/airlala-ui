@@ -20,8 +20,12 @@ const iconStyles = css`
   height: 24px;
 `;
 
+const buttonStyles = css`
+  min-width: 48px;
+`;
+
 const CancelButton = ({ onTouchTap }: CancelButtonPropsType) => (
-  <IconButton onTouchTap={onTouchTap} iconStyle={iconStyles}>
+  <IconButton onTouchTap={onTouchTap} style={buttonStyles} iconStyle={iconStyles}>
     <ClearIcon />
   </IconButton>
 );

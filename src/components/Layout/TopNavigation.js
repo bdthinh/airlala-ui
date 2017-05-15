@@ -26,7 +26,6 @@ const logoStyles = css`
   -webkit-text-fill-color: transparent;
   letter-spacing: 1.5px;
   width: 100%;
-  padding-right: 48px;
   text-transform: uppercase;
 `;
 
@@ -40,15 +39,18 @@ const wrapperStyles = css`
 type TopNavigationPropsType = {
   headerText: string,
   cancel: boolean,
+  rightElement: Function,
 };
 
 const TopNavigation = ({
   headerText = 'Airlala',
   cancel,
+  rightElement: RightElement,
 }: TopNavigationPropsType) => (
   <div style={wrapperStyles}>
     {cancel ? <CancelButton /> : <BackButton />}
     <span style={logoStyles}>{headerText}</span>
+    {RightElement && <RightElement />}
   </div>
 );
 

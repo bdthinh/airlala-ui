@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import css from 'css-template';
-import { createStructuredSelector } from 'reselect';
+import { createSelector } from 'reselect';
 
 import { signOut } from '../../state/firebase-auth';
 
@@ -15,76 +15,108 @@ import {
   currentUserLastNameSelector,
 } from '../Login/login.state';
 
-import BackButton from '../Layout/BackButton';
+import TopNavigation from '../Layout/TopNavigation';
+import AvatarWithName from '../Layout/AvatarWithName';
 import EditButton from './EditButton';
 
-const mapStateToProps = createStructuredSelector({
-  email: currentUserEmailSelector,
-  phone: currentUserPhoneSelector,
-  firstName: currentUserFirstNameSelector,
-  lastName: currentUserLastNameSelector,
-});
+const mapStateToProps = createSelector(
+  currentUserEmailSelector,
+  currentUserPhoneSelector,
+  currentUserFirstNameSelector,
+  currentUserLastNameSelector,
+  (email, phone, firstName, lastName) => ({
+    email,
+    phone,
+    name: firstName && lastName && `${firstName} ${lastName}`,
+  })
+);
 
 const enhance = connect(
   mapStateToProps,
 );
 
-const headerStyles = css`
-  color: #000;
-`;
-
 type ProfilePropsType = {
   email: string,
   phone: string,
-  firstName: string,
-  lastName: string,
-  avatarUrl: string,
+  name: string,
 };
+
+const nameStyles = css`
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #757575;
+`;
+
+const fieldWrapperStyles = css`
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 18px;
+`;
+
+const fieldStyles = css`
+  font-size: 16px;
+  font-weight: 500;
+  color: #757575;
+`;
+
+const signOutStyles = css`
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom:  18px;
+`;
 
 const Profile = ({
   email,
   phone,
-  firstName,
-  lastName,
-  avatarUrl,
+  name,
 }: ProfilePropsType) => (
   <div>
-    <div style={headerStyles}>
-      <BackButton />
-      Account
-      <EditButton />
-    </div>
-    <Divider />
-    <div>
-      <div>
-        <img src={avatarUrl} alt={firstName} />
-        <span>{`${firstName} ${lastName}`}</span>
+    <TopNavigation
+      headerText="Account"
+      rightElement={EditButton}
+      onClickRightElement
+    />
+
+    <div style={{ textAlign: 'center' }}>
+      <div style={fieldWrapperStyles}>
+        <AvatarWithName name={name} />
+        <div style={nameStyles}>
+          {name || 'Thinh Bui'}
+        </div>
       </div>
-      <div>
+
+      <div style={fieldWrapperStyles}>
         EMAIL
-        <span>{email}</span>
+        <div style={fieldStyles}>
+          {email || 'jinsherlock@gmail.com'}
+        </div>
       </div>
-      <div>
+
+      <div style={fieldWrapperStyles}>
         PHONE
-        <span>{phone}</span>
+        <div style={fieldStyles}>
+          {phone || '+84936672990'}
+        </div>
       </div>
     </div>
-    <Divider />
-    <div>
-      <div><Link to="/payment">Payment</Link></div>
-      <div><Link to="/addresses">My Addresses</Link></div>
-      <div><Link to="/feedback">Give Feedback</Link></div>
-      <div><Link to="/terms">Terms & Privacy</Link></div>
-      <div><Link to="/faqs">FAQs</Link></div>
-      <div>
+
+    <Divider style={{ marginTop: '32px', marginBottom: '32px' }} />
+
+    <div style={{ textAlign: 'center', paddingBottom: '60px' }}>
+      <div style={fieldWrapperStyles}><Link to="/feedback">Give Feedback</Link></div>
+      <div style={fieldWrapperStyles}><Link to="/terms">Terms & Privacy</Link></div>
+      <div style={fieldWrapperStyles}><Link to="/faqs">FAQs</Link></div>
+
+      <div style={signOutStyles}>
         <FlatButton
-          label="SIGN OUT"
+          label="LOGOUT"
           onTouchTap={signOut}
         />
+        <div style={fieldStyles}>v 0.0.7</div>
       </div>
-      <div>
-        V 1.0.1
-      </div>
+
     </div>
   </div>
 );
