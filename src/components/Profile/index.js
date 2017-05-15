@@ -76,7 +76,6 @@ const Profile = ({
     <TopNavigation
       headerText="Account"
       rightElement={EditButton}
-      onClickRightElement
     />
 
     <div style={{ textAlign: 'center' }}>
@@ -105,7 +104,11 @@ const Profile = ({
     <Divider style={{ marginTop: '32px', marginBottom: '32px' }} />
 
     <div style={{ textAlign: 'center', paddingBottom: '60px' }}>
-      <div style={fieldWrapperStyles}><Link to="/feedback">Give Feedback</Link></div>
+      <div style={fieldWrapperStyles}>
+        <a href="mailto:support@airlala.com?Subject=I%20would%20like%20to%20ask">
+          Give Feedback
+        </a>
+      </div>
       <div style={fieldWrapperStyles}><Link to="/terms">Terms & Privacy</Link></div>
       <div style={fieldWrapperStyles}><Link to="/faqs">FAQs</Link></div>
 

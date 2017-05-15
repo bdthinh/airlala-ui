@@ -7,7 +7,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import css from 'css-template';
 import { createSelector } from 'reselect';
 
-import BackButton from '../Layout/BackButton';
+import TopNavigation from '../Layout/TopNavigation';
+import AvatarWithName from '../Layout/AvatarWithName';
 import {
   currentUserEmailSelector,
   currentUserPhoneSelector,
@@ -17,10 +18,6 @@ import {
 
 import { updateCurrentUser } from './profile.state';
 
-const headerStyles = css`
-  color: #000;
-`;
-
 const mapStateToProps = createSelector(
   currentUserEmailSelector,
   currentUserPhoneSelector,
@@ -28,6 +25,7 @@ const mapStateToProps = createSelector(
   currentUserLastNameSelector,
   (email, phone, firstName, lastName) => ({
     phone,
+    name: firstName && lastName && `${firstName} ${lastName}`,
     initialValues: {
       firstName,
       lastName,
@@ -49,11 +47,6 @@ const enhance = compose(
   reduxForm({ form: 'Profile' }),
 );
 
-const fieldStyles = {
-  margin: '0 12px',
-  flex: 1,
-};
-
 const requiredValidation = value => (value ? undefined : 'Required');
 
 const emailValidation = (email) => {
@@ -64,56 +57,90 @@ const emailValidation = (email) => {
 
 type EditFormPropsType = {
   phone: string,
+  name: string,
   handleSubmit: Function,
 };
 
+const nameStyles = css`
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #757575;
+`;
+
+const fieldWrapperStyles = css`
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 18px;
+`;
+
+const buttonWrapperStyles = css`
+  text-align: center;
+`;
+
+const formWrapperStyles = css`
+  padding: 12px 24px;
+  position: relative;
+`;
+
 const EditForm = ({
   phone,
+  name,
   handleSubmit,
 }: EditFormPropsType) => (
   <div>
-    <div style={headerStyles}>
-      <BackButton />
-      Account
+    <TopNavigation headerText="Account" />
+    <div style={{ textAlign: 'center' }}>
+      <div style={fieldWrapperStyles}>
+        <AvatarWithName name={name} />
+        <div style={nameStyles}>
+          {name || 'Thinh Bui'}
+        </div>
+      </div>
     </div>
-    <div>
-      <Field
-        style={fieldStyles}
-        name="firstName"
-        component={TextField}
-        floatingLabelText="First Name"
-        validate={[requiredValidation]}
-      />
+
+    <div style={formWrapperStyles}>
+      <div style={{ display: 'flex' }}>
+        <Field
+          style={{ margin: '0 12px 0 0' }}
+          name="firstName"
+          component={TextField}
+          floatingLabelText="First Name"
+          validate={[requiredValidation]}
+        />
+
+        <Field
+          style={{ margin: '0 0 0 12px' }}
+          name="lastName"
+          component={TextField}
+          floatingLabelText="Last Name"
+          validate={[requiredValidation]}
+        />
+      </div>
 
       <Field
-        style={fieldStyles}
-        name="lastName"
-        component={TextField}
-        floatingLabelText="Last Name"
-        validate={[requiredValidation]}
-      />
-
-      <Field
-        style={fieldStyles}
         fullWidth
         name="email"
+        inputStyle={{ textAlign: 'center' }}
         component={TextField}
-        hintText="Your Email Address"
         floatingLabelText="Email"
         validate={[requiredValidation, emailValidation]}
       />
 
       <TextField
-        style={fieldStyles}
         fullWidth
-        hintText="123.456.7890"
         floatingLabelText="Phone"
         defaultValue={phone}
         disabled
       />
     </div>
-    <div>
-      <RaisedButton primary label="Update" onTouchTap={handleSubmit} />
+
+    <div style={buttonWrapperStyles}>
+      <RaisedButton
+        primary
+        label="Update"
+        onTouchTap={handleSubmit}
+      />
     </div>
   </div>
 );

@@ -29,6 +29,11 @@ const logoStyles = css`
   text-transform: uppercase;
 `;
 
+const paddingLogoStyles = css`
+  composes: ${logoStyles},
+  padding-right: 48px;
+`;
+
 const wrapperStyles = css`
   padding-top: 18px;
   text-align: center;
@@ -49,7 +54,9 @@ const TopNavigation = ({
 }: TopNavigationPropsType) => (
   <div style={wrapperStyles}>
     {cancel ? <CancelButton /> : <BackButton />}
-    <span style={logoStyles}>{headerText}</span>
+    <span style={RightElement ? logoStyles : paddingLogoStyles}>
+      {headerText}
+    </span>
     {RightElement && <RightElement />}
   </div>
 );
