@@ -1,6 +1,4 @@
-import firebase from 'firebase';
 import type {
-  FirebaseConfigType,
   FirebaseAppType,
   FirebaseUserType,
 } from './types';
@@ -25,12 +23,12 @@ export const authenticate = async (app: FirebaseAppType, token): FirebaseAppType
   return app;
 };
 
+/* global firebase */
 
-export default (firebaseConfig: FirebaseConfigType) : Promise<FirebaseAppType> => {
-  const app = firebase.initializeApp(firebaseConfig);
-  return new Promise((resolve) => {
-    app.auth().onAuthStateChanged(() => {
-      resolve(app);
+export default () : Promise<FirebaseAppType> => (
+  new Promise((resolve) => {
+    firebase.auth().onAuthStateChanged(() => {
+      resolve(firebase);
     });
-  });
-};
+  })
+);

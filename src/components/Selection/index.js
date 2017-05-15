@@ -9,7 +9,7 @@ type SelectionPropsType = {
 }
 
 const enhance = withProps(() => ({
-  onFindAGiftTouchTap: history.push('/select'),
+  onFindAGiftTouchTap: () => history.push('/select'),
 }));
 
 const Selection = ({ onFindAGiftTouchTap }: SelectionPropsType) => (

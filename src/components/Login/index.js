@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import CancelButton from './CancelButton';
+import BackButton from '../Layout/BackButton';
 import { signInCurrentUser } from './login.state';
 
 const connectToRedux = connect(
@@ -50,7 +50,7 @@ const emailValidation = (email) => {
 const Login = ({ handleSubmit }: LoginPropsType) => (
   <div>
     <div>
-      <CancelButton />
+      <BackButton />
       Login
     </div>
     <div>

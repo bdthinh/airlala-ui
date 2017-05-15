@@ -15,7 +15,7 @@ import {
   currentUserLastNameSelector,
 } from '../Login/login.state';
 
-import CancelButton from './CancelButton';
+import BackButton from '../Layout/BackButton';
 import EditButton from './EditButton';
 
 const mapStateToProps = createStructuredSelector({
@@ -50,7 +50,7 @@ const Profile = ({
 }: ProfilePropsType) => (
   <div>
     <div style={headerStyles}>
-      <CancelButton />
+      <BackButton />
       Account
       <EditButton />
     </div>

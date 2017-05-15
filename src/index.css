@@ -27,3 +27,9 @@ body {
 
   width: 100%;
 }
+
+a {
+  color: #1dbbee;
+  text-decoration: none;
+  cursor: pointer;
+}

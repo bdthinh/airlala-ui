@@ -5,8 +5,12 @@ import css from 'css-template';
 import GetStarted from './GetStarted';
 
 const introductionStyles = css`
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
   text-align: center;
+  padding: 0 24px;
 `;
 
 const Introduction = () => (

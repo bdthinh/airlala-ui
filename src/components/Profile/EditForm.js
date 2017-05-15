@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import css from 'css-template';
 import { createSelector } from 'reselect';
 
-import CancelButton from './CancelButton';
+import BackButton from '../Layout/BackButton';
 import {
   currentUserEmailSelector,
   currentUserPhoneSelector,
@@ -73,7 +73,7 @@ const EditForm = ({
 }: EditFormPropsType) => (
   <div>
     <div style={headerStyles}>
-      <CancelButton />
+      <BackButton />
       Account
     </div>
     <div>

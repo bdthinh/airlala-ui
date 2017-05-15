@@ -7,6 +7,8 @@ import React from 'react';
 import Introduction from '../Introduction';
 import IntroductionSlider from '../Introduction/Slider';
 import Order from '../Order';
+import OrderDetails from '../OrderDetails';
+import Chat from '../Chat';
 import SignUp from '../SignUp';
 import Verification from '../Verification';
 import Login from '../Login';
@@ -32,11 +34,7 @@ const pureLayoutStyles = css`
   min-height: 100vh;
 `;
 
-const PureLayout = (
-  {
-    bigScreen,
-  }: PureLayoutPropsType,
-) => (
+const PureLayout = () => (
   <div style={pureLayoutStyles}>
     <Route exact path="/" component={Introduction} />
     <Route exact path="/getStarted" component={IntroductionSlider} />
@@ -45,6 +43,13 @@ const PureLayout = (
     <Route exact path="/verification" component={Verification} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/orders" component={Order} />
+    <Route
+      path="/orders/:orderKey"
+      render={({ match: { params: { orderKey } } }) => (
+        <OrderDetails orderKey={orderKey} />
+      )}
+    />
+    <Route exact path="/chat" component={Chat} />
     <Route exact path="/profile" component={Profile} />
     <Route exact path="/profile/edit" component={ProfileEditForm} />
     <Route exact path="/select" component={Selection} />
@@ -54,8 +59,6 @@ const PureLayout = (
     <Route exact path="/feedback" component={FeedBack} />
     <Route exact path="/terms" component={TermsAndConditions} />
     <Route exact path="/faqs" component={Faqs} />
-
-    <BottomNavigation bigScreen={bigScreen} />
   </div>
 );
 

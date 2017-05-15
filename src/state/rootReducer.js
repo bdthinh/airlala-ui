@@ -7,6 +7,7 @@ import { routerReducer } from 'react-router-redux';
 import version from '../../GIT_COMMIT.json';
 import introduction from '../components/Introduction/introduction.state';
 import currentUser from '../components/SignUp/currentUser.state';
+import firebase from '../firebase/state';
 
 export default combineReducers({
   form: formReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
   ...apiCalls,
   ...introduction,
   ...currentUser,
+  ...firebase,
 });

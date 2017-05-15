@@ -29,7 +29,7 @@ const displayPriceRange = (priceRange) => {
 };
 
 const enhance = withProps(() => ({
-  onViewOrderDetails: orderKey => history.push(`/order/${orderKey}`),
+  onViewOrderDetails: orderKey => history.push(`/orders/${orderKey}`),
 }));
 
 const OrderList = ({
