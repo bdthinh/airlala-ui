@@ -4,36 +4,25 @@ import TextField from 'redux-form-material-ui/lib/TextField';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import RaisedButton from 'material-ui/RaisedButton';
+import css from 'css-template';
 
-import BackButton from '../Layout/BackButton';
+import TopNavigation from '../Layout/TopNavigation';
 import { signInCurrentUser } from './login.state';
 
 const connectToRedux = connect(
   null,
-  {
-    onSubmit: signInCurrentUser,
-  }
+  { onSubmit: signInCurrentUser }
 );
 
 type LoginPropsType = {
   handleSubmit: Function,
 }
 
-const fieldStyles = {
-  margin: '0 12px',
-  flex: 1,
-};
-
 const requiredValidation = value => (value ? undefined : 'Required');
 
 /**
 Valid formats:
-(123) 456-7890
-123-456-7890
-123.456.7890
-1234567890
-+31636363634
-075-63546725
+(123) 456-7890 123-456-7890 123.456.7890 1234567890 +31636363634 075-63546725
 */
 const passwordValidation = password => (
   password && password.length < 8 ?
@@ -47,15 +36,25 @@ const emailValidation = (email) => {
   return email && !email.match(regex) ? 'Email should be valid' : undefined;
 };
 
+const formWrapperStyles = css`
+  padding: 12px 24px;
+  position: relative;
+`;
+
+const buttonWrapperStyles = css`
+  position: fixed;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  text-align: center;
+`;
+
 const Login = ({ handleSubmit }: LoginPropsType) => (
   <div>
-    <div>
-      <BackButton />
-      Login
-    </div>
-    <div>
+    <TopNavigation headerText="Login" />
+
+    <div style={formWrapperStyles}>
       <Field
-        style={fieldStyles}
         fullWidth
         name="email"
         component={TextField}
@@ -65,7 +64,6 @@ const Login = ({ handleSubmit }: LoginPropsType) => (
       />
 
       <Field
-        style={fieldStyles}
         fullWidth
         name="password"
         component={TextField}
@@ -75,8 +73,13 @@ const Login = ({ handleSubmit }: LoginPropsType) => (
         validate={[requiredValidation, passwordValidation]}
       />
     </div>
-    <div>
-      <RaisedButton primary label="Log In" onTouchTap={handleSubmit} />
+
+    <div style={buttonWrapperStyles}>
+      <RaisedButton
+        primary
+        label="Login"
+        onTouchTap={handleSubmit}
+      />
     </div>
   </div>
 );
