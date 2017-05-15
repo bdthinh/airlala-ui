@@ -36,10 +36,16 @@ const wrapperStyles = css`
   display: flex;
 `;
 
-const TopNavigation = () => (
+type TopNavigationPropsType = {
+  headerText: string,
+};
+
+const TopNavigation = ({
+  headerText = 'Airlala',
+}: TopNavigationPropsType) => (
   <div style={wrapperStyles}>
     <BackButton />
-    <span style={logoStyles}>Airlala</span>
+    <span style={logoStyles}>{headerText}</span>
   </div>
 );
 

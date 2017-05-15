@@ -1,12 +1,14 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { Link } from 'react-router-dom';
 import TextField from 'redux-form-material-ui/lib/TextField';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import RaisedButton from 'material-ui/RaisedButton';
+import css from 'css-template';
 
-import VietnamIcon from './vietnam_icon.png';
-
+import VietnamIcon from './vni-flag.gif';
+import TopNavigation from '../Layout/TopNavigation';
 import { signUpNewUser } from './signUp.state';
 
 const requiredValidation = value => (value ? undefined : 'Required');
@@ -21,11 +23,6 @@ const phoneValidation = phoneNumber => (
   undefined
 );
 
-const fieldStyles = {
-  margin: '0 12px',
-  flex: 1,
-};
-
 const connectToRedux = connect(
   null,
   {
@@ -37,11 +34,50 @@ type SignUpPropsType = {
   handleSubmit: Function,
 };
 
+const continueButtonStyles = css`
+  text-align: center;
+  background: none;
+  box-shadow: none;
+`;
+
+const buttonWrapperStyles = css`
+  position: fixed;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  text-align: center;
+`;
+
+const termStyles = css`
+  color: #898989;
+  font-size: 12px;
+  padding: 12px 36px;
+  display: inline-block;
+  text-align: center;
+`;
+
+const fieldStyles = css`
+  margin: 0 0 0 48px;
+  width: calc(100% - 48px);
+`;
+
+const formWrapperStyles = css`
+  padding: 12px 24px;
+  position: relative;
+`;
+
+const flagStyles = css`
+  width: 36px;
+  position: absolute;
+  top: 48px;
+`;
+
 const SignUp = ({ handleSubmit }: SignUpPropsType) => (
   <div>
-    <div>Signup</div>
-    <div>
-      <img src={VietnamIcon} alt="Vietnam" />
+    <TopNavigation headerText="Sign up" />
+
+    <div style={formWrapperStyles}>
+      <img src={VietnamIcon} alt="Vietnam" style={flagStyles} />
       <Field
         style={fieldStyles}
         fullWidth
@@ -52,12 +88,19 @@ const SignUp = ({ handleSubmit }: SignUpPropsType) => (
         validate={[requiredValidation, phoneValidation]}
       />
     </div>
-    <div>
-      By pressing continue, you are agreeing to be bound by AirLala&quot;s
-      <a href="/terms" target="_blank" rel="noopener noreferrer">
-        Terms of Use & Privacy Policy
-      </a>
-      <RaisedButton primary label="Continue" onTouchTap={handleSubmit} />
+
+    <div style={buttonWrapperStyles}>
+      <Link to="/terms" style={termStyles}>
+        By pressing continue, you are agreeing to be bound by AirLala&quot;s
+        &nbsp;Terms of Use & Privacy Policy
+      </Link>
+      <RaisedButton
+        primary
+        label="Continue"
+        onTouchTap={handleSubmit}
+        style={continueButtonStyles}
+        buttonStyle={{ width: 'auto' }}
+      />
     </div>
   </div>
 );
