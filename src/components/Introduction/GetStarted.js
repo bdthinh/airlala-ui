@@ -6,7 +6,7 @@ import css from 'css-template';
 const headerStyles = css`
   font-size: 48px;
   font-weight: 500;
-  background: -webkit-linear-gradient(left, red , yellow);
+  background: -webkit-linear-gradient(left, #ff7178 , #ffab40);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-top: 0;
