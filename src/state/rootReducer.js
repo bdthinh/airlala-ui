@@ -6,6 +6,7 @@ import { routerReducer } from 'react-router-redux';
 
 import version from '../../GIT_COMMIT.json';
 import introduction from '../components/Introduction/introduction.state';
+import currentUser from '../components/SignUp/currentUser.state';
 
 export default combineReducers({
   form: formReducer,
@@ -14,4 +15,5 @@ export default combineReducers({
   session: (x = {}) => x,
   ...apiCalls,
   ...introduction,
+  ...currentUser,
 });

@@ -4,6 +4,7 @@ import TextField from 'redux-form-material-ui/lib/TextField';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import RaisedButton from 'material-ui/RaisedButton';
+
 import VietnamIcon from './vietnam_icon.png';
 
 import { signUpNewUser } from './signUp.state';
@@ -41,7 +42,6 @@ const SignUp = ({ handleSubmit }: SignUpPropsType) => (
     <div>Signup</div>
     <div>
       <img src={VietnamIcon} alt="Vietnam" />
-      <TextField disabled defaultValue="+84" name="prefix" />
       <Field
         style={fieldStyles}
         fullWidth
@@ -61,6 +61,7 @@ const SignUp = ({ handleSubmit }: SignUpPropsType) => (
     </div>
   </div>
 );
+
 const enhance = compose(
   connectToRedux,
   reduxForm({ form: 'Signup' }),
