@@ -19,6 +19,7 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "css-template": "^0.2.3",
+    "firebase": "^3.9.0",
     "form-urlencoded": "^1.5.0",
     "history": "^4.5.0",
     "lodash": "^4.17.4",

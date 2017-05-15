@@ -6,6 +6,10 @@ import 'roboto-npm-webfont/style.css';
 import createStore from './state/createStore';
 import history from './state/history';
 import App from './App';
+// import initFirebase, { authenticate } from './firebase';
+// import type { FirebaseAppType } from './firebase/types';
+// import firebaseConfig from './config/firebase';
+
 import './index.css';
 
 // Needed for onTouchTap
