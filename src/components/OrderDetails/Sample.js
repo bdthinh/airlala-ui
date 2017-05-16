@@ -3,29 +3,19 @@ import { withProps } from 'recompose';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Step, Stepper, StepLabel, StepContent } from 'material-ui/Stepper';
 import DoneIcon from 'material-ui/svg-icons/action/done';
+import css from 'css-template';
 
-import type { OrderType } from '../../types/Order';
 import history from '../../state/history';
 
-import { fetchOrderFromFirebase } from '../../firebase/orders.state';
-
-import BackButton from '../Layout/BackButton';
-import ChatButton from '../Layout/ChatButton';
 import AvatarWithName from '../Layout/AvatarWithName';
+import TopNavigation from '../Layout/TopNavigation';
+import ChatButton from '../Layout/ChatButton';
 
-const enhance = withProps(({ orderKey }) => ({
-  order: fetchOrderFromFirebase(orderKey),
+const enhance = withProps(() => ({
   onCheckTouchTap: () => history.push('/orders'),
 }));
 
-const displayPriceRange = (priceRange) => {
-  const min = priceRange.split(',')[0];
-  const max = priceRange.split(',')[0];
-  return `$${min} - ${max}`;
-};
-
 type OrderDetailsPropsType = {
-  order: OrderType,
   onCheckTouchTap: Function,
 };
 
@@ -33,46 +23,83 @@ const STEPS = ['Looking', 'Gifts Ready', 'Ordered'];
 
 const getActiveStep = status => STEPS.indexOf(status);
 
+const buttonWrapperStyles = css`
+  position: fixed;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  text-align: center;
+`;
+
+const fieldWrapperStyles = css`
+  margin-top: 12px;
+  margin-bottom: 12px;
+`;
+
+const textStyles = css`
+  margin: 12px 0 6px;
+`;
+
+const nameStyles = css`
+  font-size: 16px;
+  font-weight: 300;
+`;
+
+const infoStyles = css`
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 200;
+`;
+
+const stepperWrapperStyles = css`
+  margin: 0 36px;
+`;
+
 const OrderDetails = ({
-  order,
   onCheckTouchTap,
 }: OrderDetailsPropsType) => (
   <div>
-    <div>
-      <BackButton />
-      Gift For
-      <ChatButton />
+    <TopNavigation
+      headerText="GIFT FOR"
+      rightElement={ChatButton}
+    />
+
+    <div style={{ textAlign: 'center' }}>
+      <div style={fieldWrapperStyles}>
+        <AvatarWithName name="Helena Lam" />
+        <div style={textStyles}>
+          <div style={nameStyles}>Helena Lam</div>
+          <div style={infoStyles}>Sorry | $50 - 100</div>
+        </div>
+      </div>
     </div>
 
-    <div>
-      <AvatarWithName name={order.receiverName} />
-      <div>{order.receiverName}</div>
-      <div>{order.occasion}</div>
-      <div>{displayPriceRange(order.priceRange)}</div>
-    </div>
-
-    <div>
-      <Stepper activeStep={getActiveStep(order.status)} orientation="vertical">
+    <div style={stepperWrapperStyles}>
+      <Stepper activeStep={getActiveStep('Looking')} orientation="vertical">
         <Step>
           <StepLabel>LOOKING</StepLabel>
-          {order.status === 'Looking' && <StepContent>
-            <p>
-              We&quot;ll report back promptly with wonderful gift for {order.receiverName}
-            </p>
-          </StepContent>}
+          <StepContent style={{ fontSize: '12px' }}>
+            <p>We&quot;ll report back promptly with wonderful gift for Helena Lam</p>
+          </StepContent>
         </Step>
 
         <Step>
           <StepLabel>GIFTS READY</StepLabel>
+          <StepContent style={{ fontSize: '12px' }}>
+            <p>We&quot;ll report back promptly with wonderful gift for Helena Lam</p>
+          </StepContent>
         </Step>
 
         <Step>
           <StepLabel>ORDERED</StepLabel>
+          <StepContent style={{ fontSize: '12px' }}>
+            <p>We&quot;ll report back promptly with wonderful gift for Helena Lam</p>
+          </StepContent>
         </Step>
       </Stepper>
     </div>
 
-    <div>
+    <div style={buttonWrapperStyles}>
       <RaisedButton
         primary
         icon={<DoneIcon />}
