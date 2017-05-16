@@ -8,6 +8,7 @@ import Introduction from '../Introduction';
 import IntroductionSlider from '../Introduction/Slider';
 import Order from '../Order';
 import OrderDetails from '../OrderDetails/Sample';
+import SelectionPrompt from '../Selection/ExamplePrompt';
 import Chat from '../Chat';
 import SignUp from '../SignUp';
 import Verification from '../Verification';
@@ -21,6 +22,8 @@ import Addresses from '../Settings/Addresses';
 import FeedBack from '../Settings/FeedBack';
 import TermsAndConditions from '../Settings/TermsAndConditions';
 import Faqs from '../Settings/Faqs';
+
+// import NotFound from './NotFound';
 
 export const RenderNothing = always(null);
 
@@ -49,6 +52,7 @@ const PureLayout = () => (
     <Route exact path="/profile" component={Profile} />
     <Route exact path="/profile/edit" component={ProfileEditForm} />
     <Route exact path="/select" component={Selection} />
+    <Route exact path="/select/prompt" component={SelectionPrompt} />
 
     <Route exact path="/payment" component={Payment} />
     <Route exact path="/addresses" component={Addresses} />
