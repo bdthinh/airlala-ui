@@ -44,16 +44,20 @@ const wrapperStyles = css`
 type TopNavigationPropsType = {
   headerText: string,
   cancel: boolean,
+  leftElement: Function,
   rightElement: Function,
 };
 
 const TopNavigation = ({
   headerText = 'Airlala',
   cancel,
+  leftElement: LeftElement,
   rightElement: RightElement,
 }: TopNavigationPropsType) => (
   <div style={wrapperStyles}>
-    {cancel ? <CancelButton /> : <BackButton />}
+    {LeftElement && <LeftElement />}
+    {!LeftElement && cancel && <CancelButton />}
+    {!LeftElement && !cancel && <BackButton />}
     <span style={RightElement ? logoStyles : paddingLogoStyles}>
       {headerText}
     </span>

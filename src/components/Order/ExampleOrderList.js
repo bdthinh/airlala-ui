@@ -1,8 +1,6 @@
 import React from 'react';
 import css from 'css-template';
-import { map } from 'lodash/fp';
 
-import type { OrderType } from '../../types/Order';
 import OrderCard from './OrderCard';
 
 const wrapperCardsStyles = css`{
@@ -13,15 +11,17 @@ const wrapperCardsStyles = css`{
   font-size: 0;
 }`;
 
-type OrderListPropsType = {
-  orders: Array<OrderType>,
+const exampleOrder = {
+  key: 1,
+  occasion: 'Sorry',
+  priceRange: '20,60',
+  receiverName: 'Helena Lam',
+  status: 'Looking',
 };
 
-const OrderList = ({ orders }: OrderListPropsType) => (
+const OrderList = () => (
   <div style={wrapperCardsStyles}>
-    {map((order, key) => (
-      <OrderCard order={{ ...order, key }} />
-    ), orders)}
+    <OrderCard order={exampleOrder} />
   </div>
 );
 

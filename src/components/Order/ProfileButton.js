@@ -1,7 +1,7 @@
 import React from 'react';
 import { withProps } from 'recompose';
 import IconButton from 'material-ui/IconButton';
-import FaceIcon from 'material-ui/svg-icons/action/face';
+import VerifiedUserIcon from 'material-ui/svg-icons/action/verified-user';
 
 import history from '../../state/history';
 
@@ -15,7 +15,7 @@ const enhance = withProps(() => ({
 
 const ProfileButton = ({ onTouchTap }: ProfileButtonPropsType) => (
   <IconButton>
-    <FaceIcon onTouchTap={onTouchTap} />
+    <VerifiedUserIcon onTouchTap={onTouchTap} />
   </IconButton>
 );
 

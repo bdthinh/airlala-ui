@@ -48,7 +48,7 @@ const GetStarted = () => (
     <div>
       Already have an account?
       <Link to="/login">
-        <strong> Sign in</strong>
+        <strong> Login</strong>
       </Link>
     </div>
   </div>

@@ -1,30 +1,46 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import css from 'css-template';
 import { withProps } from 'recompose';
 
+import TopNavigation from '../Layout/TopNavigation';
 import ProfileButton from './ProfileButton';
-import OrderList from './OrderList';
-
-import history from '../../state/history';
+import ChatButton from '../Layout/ChatButton';
+import OrderList from './ExampleOrderList';
 
 type OrderPropsType = {
-  onFindAGiftTouchTap: Function,
-}
+  onSelectionTouchTap: Function,
+};
 
 const enhance = withProps(() => ({
-  onFindAGiftTouchTap: () => history.push('/select'),
+  onSelectionTouchTap: () => history.push('/select'),
 }));
 
-const Order = ({ onFindAGiftTouchTap }: OrderPropsType) => (
+const buttonWrapperStyles = css`
+  position: fixed;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  text-align: center;
+`;
+
+const Order = ({ onSelectionTouchTap }: OrderPropsType) => (
   <div>
-    <ProfileButton />
-    <OrderList />
-    <div>AIRLALA</div>
-    <RaisedButton
-      primary
-      label="FIND A GIFT"
-      onTouchTap={onFindAGiftTouchTap}
+    <TopNavigation
+      headerText="AIRLALA"
+      leftElement={ProfileButton}
+      rightElement={ChatButton}
     />
+
+    <OrderList />
+
+    <div style={buttonWrapperStyles}>
+      <RaisedButton
+        primary
+        label="FIND A GIFT"
+        onTouchTap={onSelectionTouchTap}
+      />
+    </div>
   </div>
 );
 

@@ -8,6 +8,7 @@ import Introduction from '../Introduction';
 import IntroductionSlider from '../Introduction/Slider';
 import Order from '../Order';
 import OrderDetails from '../OrderDetails';
+import OrderDetailsSample from '../OrderDetails/Sample';
 import Chat from '../Chat';
 import SignUp from '../SignUp';
 import Verification from '../Verification';
@@ -43,6 +44,12 @@ const PureLayout = () => (
       render={({ match: { params: { orderKey } } }) => (
         <OrderDetails orderKey={orderKey} />
       )}
+    />
+
+    <Route
+      exact
+      path="/orders/details"
+      component={OrderDetailsSample}
     />
     <Route exact path="/chat" component={Chat} />
     <Route exact path="/profile" component={Profile} />
