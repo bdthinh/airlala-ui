@@ -7,6 +7,8 @@ import { routerReducer } from 'react-router-redux';
 import version from '../../GIT_COMMIT.json';
 import introduction from '../components/Introduction/introduction.state';
 import currentUser from '../components/SignUp/currentUser.state';
+import currentSelection from '../components/Selection/currentSelection.state';
+import selectStatus from '../components/Selection/selectStatus.state';
 import firebase from '../firebase/state';
 
 export default combineReducers({
@@ -17,5 +19,7 @@ export default combineReducers({
   ...apiCalls,
   ...introduction,
   ...currentUser,
+  ...currentSelection,
+  ...selectStatus,
   ...firebase,
 });

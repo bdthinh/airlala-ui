@@ -11,6 +11,7 @@ import rootReducer from './rootReducer';
 import getInitialState from './getInitialState';
 import { middleware as locationNavigationMiddleware } from '../utils/location-middleware';
 import arrayMiddleware from '../utils/array-middleware';
+import functionMiddleware from '../utils/function-middleware';
 import apiMiddleware from './api';
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
@@ -27,6 +28,7 @@ if (module.hot) {
 const enhancers = compact([
   applyMiddleware(
     arrayMiddleware,
+    functionMiddleware,
     locationNavigationMiddleware,
     thunk,
     apiMiddleware,
