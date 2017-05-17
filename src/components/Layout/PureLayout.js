@@ -1,5 +1,4 @@
 import { Route } from 'react-router-dom';
-import always from 'lodash/fp/always';
 import { grey50 } from 'material-ui/styles/colors';
 import css from 'css-template';
 import React from 'react';
@@ -24,8 +23,6 @@ import TermsAndConditions from '../Settings/TermsAndConditions';
 import Faqs from '../Settings/Faqs';
 
 // import NotFound from './NotFound';
-
-export const RenderNothing = always(null);
 
 const pureLayoutStyles = css`
   background: ${grey50};
@@ -59,6 +56,7 @@ const PureLayout = () => (
     <Route exact path="/feedback" component={FeedBack} />
     <Route exact path="/terms" component={TermsAndConditions} />
     <Route exact path="/faqs" component={Faqs} />
+
   </div>
 );
 

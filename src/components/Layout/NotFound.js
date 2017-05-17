@@ -38,7 +38,7 @@ const introductionStyles = css`
   height: 100vh;
   justify-content: center;
   text-align: center;
-  padding: 48px 24px;
+  padding: 6px 24px 0;
 `;
 
 const NotFound = () => (
