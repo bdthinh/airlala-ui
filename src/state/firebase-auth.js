@@ -20,4 +20,17 @@ export const signOut = () => firebaseAuth.signOut().then(() => {
   console.log('error.message', error.message);
 });
 
+export const updateCurrentUserProfile = ({ firstName, lastName, email }) => {
+  const currentUser = firebaseAuth.currentUser;
+  currentUser.updateProfile({
+    firstName,
+    lastName,
+    email,
+  }).then(
+    () => ({ status: 200 }),
+    error => ({ status: 422, error })
+  );
+  console.log('Updated profile');
+};
+
 export default firebaseAuth;

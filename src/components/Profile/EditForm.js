@@ -7,6 +7,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import css from 'css-template';
 import { createSelector } from 'reselect';
 
+import { updateCurrentUserProfile } from '../../state/firebase-auth';
+
 import TopNavigation from '../Layout/TopNavigation';
 import AvatarWithName from '../Layout/AvatarWithName';
 import {
@@ -15,8 +17,6 @@ import {
   currentUserFirstNameSelector,
   currentUserLastNameSelector,
 } from '../SignUp/currentUser.state';
-
-import { updateCurrentUser } from './profile.state';
 
 const mapStateToProps = createSelector(
   currentUserEmailSelector,
@@ -38,7 +38,7 @@ const mapStateToProps = createSelector(
 const connectToRedux = connect(
   mapStateToProps,
   {
-    onSubmit: updateCurrentUser,
+    onSubmit: data => console.log('data', data),
   },
 );
 
@@ -83,6 +83,8 @@ const formWrapperStyles = css`
   position: relative;
 `;
 
+const displayPhone = phone => phone.replace('84', '(+84)  ');
+
 const EditForm = ({
   phone,
   name,
@@ -94,7 +96,7 @@ const EditForm = ({
       <div style={fieldWrapperStyles}>
         <AvatarWithName name={name} />
         <div style={nameStyles}>
-          {name || 'Thinh Bui'}
+          {name && ''}
         </div>
       </div>
     </div>
@@ -130,7 +132,7 @@ const EditForm = ({
       <TextField
         fullWidth
         floatingLabelText="Phone"
-        defaultValue={phone}
+        value={displayPhone(phone)}
         disabled
       />
     </div>

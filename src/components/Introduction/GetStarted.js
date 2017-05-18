@@ -45,12 +45,12 @@ const GetStarted = () => (
       <RaisedButton primary label="Get Started" />
     </Link>
 
-    <div>
+    {null && <div>
       Already have an account?
       <Link to="/login">
         <strong> Login</strong>
       </Link>
-    </div>
+    </div>}
   </div>
 );
 

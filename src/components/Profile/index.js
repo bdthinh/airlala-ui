@@ -113,10 +113,10 @@ const Profile = ({
       <div style={fieldWrapperStyles}><Link to="/faqs">FAQs</Link></div>
 
       <div style={signOutStyles}>
-        <FlatButton
+        {null && <FlatButton
           label="LOGOUT"
           onTouchTap={signOut}
-        />
+        />}
         <div style={fieldStyles}>v 0.0.7</div>
       </div>
 

@@ -11,7 +11,9 @@ export const enterHomePage = () => (dispatch, getState) => {
   const token = currentUserTokenSelector(state);
   if (token) {
     loginWithToken(token);
-    history.push('/orders');
+    if (history.location.pathname === '/') {
+      history.push('/orders');
+    }
   }
 };
 
