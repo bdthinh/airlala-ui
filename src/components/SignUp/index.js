@@ -83,7 +83,7 @@ const SignUp = ({ handleSubmit }: SignUpPropsType) => (
         fullWidth
         name="phone"
         component={TextField}
-        hintText="123.456.7890"
+        hintText="093.6672.990"
         floatingLabelText="Phone number"
         validate={[requiredValidation, phoneValidation]}
       />

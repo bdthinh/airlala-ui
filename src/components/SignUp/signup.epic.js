@@ -13,7 +13,7 @@ import { saveCurrentUserWith } from './currentUser.state';
 
 const saveCurrentPhoneFromUid = (action) => {
   const uid = path('payload.json.uid', action);
-  return saveCurrentUserWith({ uid });
+  return saveCurrentUserWith({ uid, phone: uid });
 };
 
 const isACompleteAction = flow(path('type'), eq(ACTIONS.COMPLETE));

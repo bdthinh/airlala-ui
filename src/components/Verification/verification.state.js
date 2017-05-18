@@ -2,12 +2,12 @@ import { makeFetchAction } from 'redux-api-call';
 import { createSelector } from 'reselect';
 
 import { VERIFY_OTP_ENDPOINT } from '../../endpoints';
-import { currentUserPhoneSelector } from '../SignUp/currentUser.state';
+import { currentUserUidSelector } from '../SignUp/currentUser.state';
 
 const verifyOTPBodySelectorCreator = code => createSelector(
-  currentUserPhoneSelector,
-  phone => ({
-    phone,
+  currentUserUidSelector,
+  uid => JSON.stringify({
+    phone: uid,
     code,
   })
 );
@@ -22,6 +22,7 @@ const {
     headers: {
       'Content-Type': 'application/json',
     },
+    method: 'POST',
     body: verifyOTPBodySelectorCreator(code),
   })
 );

@@ -14,7 +14,7 @@ import {
   currentUserPhoneSelector,
   currentUserFirstNameSelector,
   currentUserLastNameSelector,
-} from '../Login/login.state';
+} from '../SignUp/currentUser.state';
 
 import { updateCurrentUser } from './profile.state';
 

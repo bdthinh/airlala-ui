@@ -1,13 +1,17 @@
-import { seenIntroductionSelector } from '../Introduction/introduction.state';
+import { loginWithToken } from '../../state/firebase-auth';
+
+import {
+  currentUserTokenSelector,
+} from '../SignUp/currentUser.state';
 
 import history from '../../state/history';
 
 export const enterHomePage = () => (dispatch, getState) => {
   const state = getState();
-  const seenIntroduction = seenIntroductionSelector(state);
-
-  if (seenIntroduction) {
-    history.push('/signup');
+  const token = currentUserTokenSelector(state);
+  if (token) {
+    loginWithToken(token);
+    history.push('/orders');
   }
 };
 

@@ -12,12 +12,12 @@ import { navigateTo } from '../../utils/location-middleware';
 import { saveCurrentUserWith } from '../SignUp/currentUser.state';
 
 const saveToken = (action) => {
-  const token = path(action, 'payload.json.token');
+  const token = path('payload.json.token', action);
   return saveCurrentUserWith({ token });
 };
 
 const loginAfterVerifyWithToken = (action) => {
-  const token = path(action, 'payload.json.token');
+  const token = path('payload.json.token', action);
   return loginWithToken(token);
 };
 

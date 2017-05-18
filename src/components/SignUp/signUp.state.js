@@ -17,10 +17,10 @@ const {
   ({ phone }) => ({
     endpoint: CREATE_USER_ENDPOINT,
     method: 'POST',
-    body: JSON.stringify({ phone }),
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify({ phone: `+84${phone}` }),
   })
 );
 
