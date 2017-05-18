@@ -35,7 +35,7 @@ const enhance = connect(
 );
 
 const selectionWrapperStyles = css`
-  margin: 0 6px;
+  margin: 12px 6px;
 `;
 
 

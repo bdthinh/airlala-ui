@@ -20,13 +20,10 @@ const cardStyles = css`
 `;
 
 const contentStyles = css`
-  margin-top: 36px;
-  margin-bottom: 24px;
+  margin: 24px 12px;
   font-size: 14px;
   font-weight: 300;
   line-height: 18px;
-  display: flex;
-  flex-wrap: wrap;
 `;
 
 type StylesCardPropsType = {
@@ -52,18 +49,44 @@ const enhance = connect(
   },
 );
 
+const headerStyle = css`
+  text-transform: uppercase;
+  color: #BDBDBD;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 1.1px;
+  padding-bottom: 18px;
+`;
+
+const chipLabelStyles = css`
+  margin: 4px 8px;
+  background-color: transparent;
+  border: 1px solid #E1E1E1;
+`;
+
+const currentChipLabelStyles = css`
+  composes: ${chipLabelStyles},
+  border: 1px solid #F57C00;
+`;
+
 const StylesCard = ({ current, onChange }: StylesCardPropsType) => (
   <Card style={cardStyles}>
     <div style={contentStyles}>
-      {TAGS.map(tag => (
-        <Chip
-          key={tag}
-          backgroundColor={current.indexOf(tag) !== -1 ? lightBlue200 : grey50}
-          onTouchTap={() => onChange(tag)}
-        >
-          {capitalize(tag)}
-        </Chip>
-      ))}
+      <div style={headerStyle}>
+        Your Budget
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+        {TAGS.map(tag => (
+          <Chip
+            key={tag}
+            onTouchTap={() => onChange(tag)}
+            style={current.indexOf(tag) !== -1 ? currentChipLabelStyles : chipLabelStyles}
+            labelStyle={{ fontWeight: '500' }}
+          >
+            {capitalize(tag)}
+          </Chip>
+        ))}
+      </div>
     </div>
   </Card>
 );

@@ -4,7 +4,6 @@ import css from 'css-template';
 import { Card } from 'material-ui/Card';
 import Slider from 'material-ui/Slider';
 
-
 import {
   changePriceRange,
   csPriceRangeSelector,
@@ -19,8 +18,7 @@ const cardStyles = css`
 `;
 
 const contentStyles = css`
-  margin-top: 36px;
-  margin-bottom: 24px;
+  margin: 24px 12px;
   font-size: 14px;
   font-weight: 300;
   line-height: 18px;
@@ -58,10 +56,26 @@ type BudgetCardPropsType = {
   onChange: Function,
 };
 
+const headerStyle = css`
+  text-transform: uppercase;
+  color: #BDBDBD;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 1.1px;
+  padding-bottom: 18px;
+`;
+
+const rootSliderStyles = css`
+  margin: 0 24px;
+`;
+
 const BudgetCard = ({ current, onChange }: BudgetCardPropsType) => (
   <Card style={cardStyles}>
     <div style={contentStyles}>
-      <div>
+      <div style={headerStyle}>
+        Your Budget
+      </div>
+      <div style={{ fontSize: '40px', fontWeight: '400' }}>
         {displayPrice(current)}
       </div>
       <Slider
@@ -70,6 +84,7 @@ const BudgetCard = ({ current, onChange }: BudgetCardPropsType) => (
         step={1}
         value={PRICE_RANGES.indexOf(current)}
         onChange={onChange}
+        style={rootSliderStyles}
       />
     </div>
   </Card>

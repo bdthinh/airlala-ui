@@ -17,12 +17,13 @@ type LocationCardPropsType = {
 
 const spanRangeStyles = css`
   margin: 0 6px;
-  border: 1px solid red;
+  border: 1px solid #E1E1E1;
+  padding: 6px 12px;
 `;
 
 const spanRangeCurrentStyles = css`
   composes: ${spanRangeStyles},
-  background-color: blue;
+  border: 1px solid #F57C00;
 `;
 
 const cardStyles = css`
@@ -34,12 +35,22 @@ const cardStyles = css`
 `;
 
 const contentStyles = css`
-  margin-top: 36px;
-  margin-bottom: 24px;
+  margin: 24px 12px;
   font-size: 14px;
   font-weight: 300;
   line-height: 18px;
 `;
+
+
+const headerStyle = css`
+  text-transform: uppercase;
+  color: #BDBDBD;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 1.1px;
+  padding-bottom: 18px;
+`;
+
 
 const enhance = connect(
   state => ({
@@ -53,6 +64,10 @@ const enhance = connect(
 const LocationCard = ({ current, onChange }: LocationCardPropsType) => (
   <Card style={cardStyles}>
     <div style={contentStyles}>
+      <div style={headerStyle}>
+        Location
+      </div>
+
       {LOCATIONS.map(location => (
         <span
           style={location === current ? spanRangeCurrentStyles : spanRangeStyles}

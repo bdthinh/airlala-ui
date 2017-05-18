@@ -19,12 +19,10 @@ const cardStyles = css`
 `;
 
 const contentStyles = css`
-  margin-top: 36px;
-  margin-bottom: 24px;
+  margin: 24px 12px;
   font-size: 14px;
   font-weight: 300;
   line-height: 18px;
-  overflow: hidden;
 `;
 
 type OccasionCardPropsType = {
@@ -61,17 +59,31 @@ const OCCASIONS = [
 
 const spanRangeStyles = css`
   margin: 0 6px;
-  border: 1px solid red;
+  border: 1px solid #E1E1E1;
+  padding: 48px 6px;
 `;
 
 const spanRangeCurrentStyles = css`
   composes: ${spanRangeStyles},
-  background-color: blue;
+  border: 1px solid #F57C00;
+`;
+
+const headerStyle = css`
+  text-transform: uppercase;
+  color: #BDBDBD;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 1.1px;
+  padding-bottom: 18px;
 `;
 
 const OccasionCard = ({ current, onChange }: OccasionCardPropsType) => (
   <Card style={cardStyles}>
     <div style={contentStyles}>
+      <div style={headerStyle}>
+        Occasion For Giving
+      </div>
+
       <Slider {...sliderSettings}>
         {OCCASIONS.map(occasion => (
           <span

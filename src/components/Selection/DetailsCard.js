@@ -54,6 +54,7 @@ const DetailsCard = ({
         multiLine
         rows={4}
         rowsMax={6}
+        inputStyle={{ textAlign: 'center' }}
       />
     </div>
   </Card>
