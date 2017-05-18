@@ -9,6 +9,7 @@ import Introduction from '../Introduction';
 import IntroductionSlider from '../Introduction/Slider';
 import Order from '../Order';
 import OrderDetails from '../OrderDetails';
+import ProductList from '../ProductList';
 import SelectionPrompt from '../Selection/Prompt';
 import Chat from '../Chat';
 import SignUp from '../SignUp';
@@ -65,9 +66,16 @@ class Layout extends React.Component {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/orders" component={Order} />
                 <Route
+                  exact
                   path="/orders/:orderKey"
                   render={({ match: { params: { orderKey } } }) => (
                     <OrderDetails orderKey={orderKey} />
+                  )}
+                />
+                <Route
+                  path="/orders/:orderKey/gifts"
+                  render={({ match: { params: { orderKey } } }) => (
+                    <ProductList orderKey={orderKey} />
                   )}
                 />
 

@@ -1,0 +1,21 @@
+.product-list .slick-dots {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #BDBDBD;
+  padding: 12px 12px;
+  background-color: #fff;
+  left: 0;
+  right: 53px;
+  width: auto;
+}
+
+.product-list .slick-dots li {
+  padding: 4px 2px;
+  color: #BDBDBD;
+}
+
+.product-list .slick-dots li.slick-active {
+  background-color: #000;
+  color: #fff;
+}
