@@ -7,3 +7,8 @@
 .slick-slider {
   height: 100%;
 }
+
+.slick-dots {
+  position: fixed;
+  bottom: 23px;
+}

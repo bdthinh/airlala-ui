@@ -41,12 +41,13 @@ type introductionSliderPropsType = {
 };
 
 const sliderWrapperStyles = css`
-  height: calc(100vh - 128px);
+  height: calc(100vh - 150px);
   margin-top: 12px;
+  overflow: auto;
 `;
 
 const skipButtonStyles = css`
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 18px;
 `;
