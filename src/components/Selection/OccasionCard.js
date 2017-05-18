@@ -69,6 +69,8 @@ const spanRangeStyles = css`
   margin: 0 6px;
   border: 1px solid #E1E1E1;
   padding: 48px 6px;
+  font-size: 18px;
+  font-weight: bold;
 `;
 
 const spanRangeCurrentStyles = css`
