@@ -9,7 +9,6 @@ import TopNavigation from '../Layout/TopNavigation';
 import Foundation from './Foundation';
 import Process from './Process';
 import HowItWorks from './HowItWorks';
-import MatchMake from './MatchMake';
 import EndService from './EndService';
 
 import history from '../../state/history';
@@ -62,7 +61,6 @@ const IntroductionSlider = ({
         <div><Foundation /></div>
         <div><Process /></div>
         <div><HowItWorks /></div>
-        <div><MatchMake /></div>
         <div><EndService /></div>
       </Slider>
     </div>

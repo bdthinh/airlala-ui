@@ -38,7 +38,7 @@ const GetStarted = () => (
     </h1>
     <h4 style={subHeaderStyles}>Gift wonderfully</h4>
     <p style={contentStyles}>
-      AirLala is simple, sopisticated way to give incredibly thoughtful gifts.
+      AirLaLa is simple, sopisticated way to take incredibly thoughtful local products.
     </p>
 
     <Link to="/getStarted" style={linkStyles}>

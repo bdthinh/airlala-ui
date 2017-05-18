@@ -1,8 +1,12 @@
 import React from 'react';
+import hiwImage from './img/slider_hiw.jpg';
 
 const HowItWorks = () => (
-  <div className="custom-slide">
-    Our talented gift experts and powerful A.I. tools find you amazing gifts.
+  <div style={{ overflow: 'hidden' }}>
+    <img src={hiwImage} alt="Gift" style={{ maxWidth: '100%' }} />
+    <div className="custom-slide">
+      Matchmaking international buyers with local partners.
+    </div>
   </div>
 );
 

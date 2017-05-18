@@ -14,9 +14,9 @@ export const enterHomePage = () => (dispatch, getState) => {
       loginWithToken(token);
     }
 
-    if (history.location.pathname === '/') {
-      history.push('/orders');
-    }
+    // if (history.location.pathname === '/') {
+    //   history.push('/orders');
+    // }
   }
 };
 
