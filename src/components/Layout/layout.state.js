@@ -1,4 +1,4 @@
-import { loginWithToken } from '../../state/firebase-auth';
+import firebaseAuth, { loginWithToken } from '../../state/firebase-auth';
 
 import {
   currentUserTokenSelector,
@@ -10,7 +10,10 @@ export const enterHomePage = () => (dispatch, getState) => {
   const state = getState();
   const token = currentUserTokenSelector(state);
   if (token) {
-    loginWithToken(token);
+    if (!firebaseAuth.currentUser) {
+      loginWithToken(token);
+    }
+
     if (history.location.pathname === '/') {
       history.push('/orders');
     }

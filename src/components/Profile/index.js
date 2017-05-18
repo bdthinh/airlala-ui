@@ -6,14 +6,17 @@ import FlatButton from 'material-ui/FlatButton';
 import css from 'css-template';
 import { createSelector } from 'reselect';
 
-import { signOut } from '../../state/firebase-auth';
-
 import {
+  signOut,
   currentUserEmailSelector,
-  currentUserPhoneSelector,
   currentUserFirstNameSelector,
   currentUserLastNameSelector,
-} from '../Login/login.state';
+} from '../../state/firebase-auth';
+
+import {
+  currentUserPhoneSelector,
+} from '../SignUp/currentUser.state';
+
 
 import TopNavigation from '../Layout/TopNavigation';
 import AvatarWithName from '../Layout/AvatarWithName';
@@ -67,6 +70,8 @@ const signOutStyles = css`
   bottom:  18px;
 `;
 
+const displayPhone = phone => phone.replace('84', '(+84)  ');
+
 const Profile = ({
   email,
   phone,
@@ -82,7 +87,7 @@ const Profile = ({
       <div style={fieldWrapperStyles}>
         <AvatarWithName name={name} />
         <div style={nameStyles}>
-          {name || 'Thinh Bui'}
+          {name || ''}
         </div>
       </div>
 
@@ -96,7 +101,7 @@ const Profile = ({
       <div style={fieldWrapperStyles}>
         PHONE
         <div style={fieldStyles}>
-          {phone || '+84936672990'}
+          {displayPhone(phone)}
         </div>
       </div>
     </div>

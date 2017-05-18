@@ -2,20 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import TextField from 'redux-form-material-ui/lib/TextField';
-import { compose } from 'recompose';
+import { compose, withProps } from 'recompose';
 import RaisedButton from 'material-ui/RaisedButton';
 import css from 'css-template';
 import { createSelector } from 'reselect';
 
-import { updateCurrentUserProfile } from '../../state/firebase-auth';
+import {
+  updateCurrentUserProfile,
+  currentUserEmailSelector,
+  currentUserFirstNameSelector,
+  currentUserLastNameSelector,
+} from '../../state/firebase-auth';
 
 import TopNavigation from '../Layout/TopNavigation';
 import AvatarWithName from '../Layout/AvatarWithName';
+
 import {
-  currentUserEmailSelector,
   currentUserPhoneSelector,
-  currentUserFirstNameSelector,
-  currentUserLastNameSelector,
 } from '../SignUp/currentUser.state';
 
 const mapStateToProps = createSelector(
@@ -37,13 +40,14 @@ const mapStateToProps = createSelector(
 
 const connectToRedux = connect(
   mapStateToProps,
-  {
-    onSubmit: data => console.log('data', data),
-  },
 );
+
 
 const enhance = compose(
   connectToRedux,
+  withProps(() => ({
+    onSubmit: data => updateCurrentUserProfile(data),
+  })),
   reduxForm({ form: 'Profile' }),
 );
 

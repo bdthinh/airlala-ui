@@ -42,15 +42,7 @@ const loginWithTokenIfVerificationSucces = action$ =>
     .filter(isACompleteAction)
     .map(loginAfterVerifyWithToken);
 
-const navigateToHomePageIfVerificationSuccess = action$ =>
-  action$
-    .filter(isVerificationAction)
-    .filter(isACompleteAction)
-    .mapTo(navigateProfilePage);
-
-
 export default combineEpics(
   loginWithTokenIfVerificationSucces,
   saveTokenIfVerificationSuccess,
-  navigateToHomePageIfVerificationSuccess,
 );
