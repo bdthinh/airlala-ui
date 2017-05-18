@@ -33,12 +33,14 @@ const sliderSettings = {
   slidesToScroll: 2,
   arrows: false,
   draggable: true,
+  initialSlide: 4,
 };
 
 const ageRangesliderSettings = {
   ...sliderSettings,
   slidesToShow: 4,
   slidesToScroll: 3,
+  initialSlide: 3,
 };
 
 const cardStyles = css`
@@ -82,12 +84,13 @@ const RELATIONSHIPS = [
 
 const spanRangeStyles = css`
   margin: 0 6px;
-  border: 1px solid red;
+  border: 1px solid #E1E1E1;
+  padding: 6px 12px;
 `;
 
 const spanRangeCurrentStyles = css`
   composes: ${spanRangeStyles},
-  background-color: blue;
+  border: 1px solid #F57C00;
 `;
 
 type RangeSelectionPropsType = {
@@ -100,7 +103,7 @@ const sliderWrapperStyle = css`
 `;
 
 const SexRangeSelection = ({ current, onChange }: RangeSelectionPropsType) => (
-  <div style={sliderWrapperStyle}>
+  <div style={{ margin: '12px 0 18px' }}>
     {SEX.map(sex => (
       <span
         style={sex === current ? spanRangeCurrentStyles : spanRangeStyles}
