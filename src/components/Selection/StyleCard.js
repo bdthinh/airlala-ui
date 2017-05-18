@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import css from 'css-template';
 import { Card } from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
-import { lightBlue200, grey50 } from 'material-ui/styles/colors';
 import { capitalize } from 'lodash/fp';
 
 import {

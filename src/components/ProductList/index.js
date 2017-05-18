@@ -1,7 +1,9 @@
 import React from 'react';
 import Slider from 'react-slick';
 import FlatButton from 'material-ui/FlatButton';
-import { withProps } from 'recompose';
+import Badge from 'material-ui/Badge';
+import { withProps, compose } from 'recompose';
+import { connect } from 'react-redux';
 import { map } from 'lodash';
 import css from 'css-template';
 import CartIcon from 'material-ui/svg-icons/action/shopping-cart';
@@ -10,6 +12,12 @@ import './index.css';
 
 import TopNavigation from '../Layout/TopNavigation';
 import ChatButton from '../Layout/ChatButton';
+import Cart from '../Cart';
+import {
+  toggleCart,
+  addToCart,
+  cartItemsSelector,
+} from '../Cart/cart.state';
 
 const sliderSettings = {
   customPaging: i => (<span>{i + 1}</span>),
@@ -38,9 +46,22 @@ type GiftType = {
 
 type ProductListPropsType = {
   gifts: Array<GiftType>,
+  onToggleCart: Function,
+  onTakeThisTouchTap: Function,
+  cartItemsCount: number,
 };
 
-const enhance = withProps(({ orderKey }) => ({
+const connectToRedux = connect(
+  state => ({
+    cartItemsCount: cartItemsSelector(state).length,
+  }),
+  {
+    onToggleCart: toggleCart,
+    onTakeThisTouchTap: product => addToCart(product),
+  }
+);
+
+const enhanceProps = withProps(({ orderKey }) => ({
   gifts: {
     1: {
       name: 'The 3xu love matchbox',
@@ -56,6 +77,11 @@ const enhance = withProps(({ orderKey }) => ({
     },
   },
 }));
+
+const enhance = compose(
+  connectToRedux,
+  enhanceProps,
+);
 
 const nameStyles = css`
   font-size: 18px;
@@ -100,12 +126,19 @@ const cartIconStyles = css`
   bottom: 0px;
   right: 0px;
   border-left: 1px solid #BDBDBD;
-  padding: 14px;
+  padding: 12px 14px;
   border-top: 1px solid #BDBDBD;
   background-color: #fff;
+  min-height: 29px;
+  min-width: 25px;
 `;
 
-const ProductList = ({ gifts }: ProductListPropsType) => (
+const ProductList = ({
+  gifts,
+  onToggleCart,
+  onTakeThisTouchTap,
+  cartItemsCount,
+}: ProductListPropsType) => (
   <div>
     <TopNavigation
       headerText="GIFT SELECTION"
@@ -123,7 +156,11 @@ const ProductList = ({ gifts }: ProductListPropsType) => (
                 <div style={{ textAlign: 'center' }}>
                   <div style={nameStyles}>{gift.name}</div>
                   <div style={priceStyles}>{gift.price}</div>
-                  <FlatButton label="Take this" style={takeThisStyles} />
+                  <FlatButton
+                    label="Take this"
+                    style={takeThisStyles}
+                    onTouchTap={() => onTakeThisTouchTap({ ...gift, key })}
+                  />
                 </div>
 
                 <div style={detailsHeaderStyles}>
@@ -138,8 +175,19 @@ const ProductList = ({ gifts }: ProductListPropsType) => (
           ))
         }
       </Slider>
-      <CartIcon style={cartIconStyles} />
+      {cartItemsCount === 0
+        ? <div style={cartIconStyles}><CartIcon onTouchTap={onToggleCart} /></div>
+        : <Badge
+          badgeContent={cartItemsCount}
+          secondary
+          style={cartIconStyles}
+          onTouchTap={onToggleCart}
+        >
+          <CartIcon />
+        </Badge>
+      }
     </div>
+    <Cart />
   </div>
 );
 

@@ -8,7 +8,6 @@ import { ACTIONS } from 'redux-api-call';
 import { path, flow, eq } from 'lodash/fp';
 
 import { loginWithToken } from '../../state/firebase-auth';
-import { navigateTo } from '../../utils/location-middleware';
 import { saveCurrentUserWith } from '../SignUp/currentUser.state';
 
 const saveToken = (action) => {
@@ -27,8 +26,6 @@ const isVerificationAction = flow(
   path('payload.name'),
   eq('VERIFY_OTP'),
 );
-
-const navigateProfilePage = navigateTo('/profile/edit');
 
 const saveTokenIfVerificationSuccess = action$ =>
   action$

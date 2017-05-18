@@ -9,6 +9,7 @@ import introduction from '../components/Introduction/introduction.state';
 import currentUser from '../components/SignUp/currentUser.state';
 import currentSelection from '../components/Selection/currentSelection.state';
 import selectStatus from '../components/Selection/selectStatus.state';
+import cart from '../components/Cart/cart.state';
 import firebase from '../firebase/state';
 
 export default combineReducers({
@@ -21,5 +22,6 @@ export default combineReducers({
   ...currentUser,
   ...currentSelection,
   ...selectStatus,
+  ...cart,
   ...firebase,
 });

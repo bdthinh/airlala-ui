@@ -8,6 +8,7 @@
   left: 0;
   right: 53px;
   width: auto;
+  min-height: 29px;
 }
 
 .product-list .slick-dots li {

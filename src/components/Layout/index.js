@@ -10,6 +10,7 @@ import IntroductionSlider from '../Introduction/Slider';
 import Order from '../Order';
 import OrderDetails from '../OrderDetails';
 import ProductList from '../ProductList';
+import Confirmed from '../Cart/Confirmed';
 import SelectionPrompt from '../Selection/Prompt';
 import Chat from '../Chat';
 import SignUp from '../SignUp';
@@ -78,6 +79,8 @@ class Layout extends React.Component {
                     <ProductList orderKey={orderKey} />
                   )}
                 />
+
+                <Route exact path="/confirmed" component={Confirmed} />
 
                 <Route exact path="/chat" component={Chat} />
                 <Route exact path="/profile" component={Profile} />
