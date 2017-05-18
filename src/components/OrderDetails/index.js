@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Step, Stepper, StepLabel, StepContent } from 'material-ui/Stepper';
 import DoneIcon from 'material-ui/svg-icons/action/done';
 import css from 'css-template';
-import { negate, path } from 'lodash/fp';
+import { capitalize, negate, path } from 'lodash/fp';
 
 import history from '../../state/history';
 import spinner from '../../utils/spinner';
@@ -91,7 +91,9 @@ const OrderDetails = ({
         <AvatarWithName name={order.receiverName} />
         <div style={textStyles}>
           <div style={nameStyles}>{order.receiverName}</div>
-          <div style={infoStyles}>{order.occasion} | {displayPrice(order.priceRange)}</div>
+          <div style={infoStyles}>
+            {capitalize(order.occasion)} | {displayPrice(order.priceRange)}
+          </div>
         </div>
       </div>
     </div>
