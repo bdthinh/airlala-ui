@@ -2,7 +2,6 @@ import { Router, Route, Switch } from 'react-router';
 import { connect } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import React from 'react';
-import { grey50 } from 'material-ui/styles/colors';
 import css from 'css-template';
 
 import history from '../../state/history';
@@ -34,7 +33,7 @@ const connectToRedux = connect(
 );
 
 const pureLayoutStyles = css`
-  background: ${grey50};
+  background: url('/airlala-bg.png');
   min-height: 100vh;
 `;
 
