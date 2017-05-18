@@ -52,7 +52,7 @@ const enhance = compose(
       // eslint-disable-next-line immutable/no-this
       persistStore(
         this.props.store,
-        { whitelist: ['session'] },
+        { whitelist: ['session', 'currentSelection', 'selectionStatus'] },
         () => {
           this.props.completeRehydrated(true);
         },
