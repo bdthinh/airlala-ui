@@ -1,7 +1,7 @@
 import React from 'react';
 import css from 'css-template';
 import { map } from 'lodash';
-import { compose } from 'recompose';
+import { withProps, compose } from 'recompose';
 import { connect } from 'react-redux';
 
 import type { OrderType } from '../../types/Order';
@@ -26,9 +26,12 @@ type OrderListPropsType = {
 const enhance = compose(
   connect(
     state => ({
-      orders: fetchOrdersFromFirebase(currentUserPhoneSelector(state)),
+      phone: currentUserPhoneSelector(state),
     }),
   ),
+  withProps(({ phone }) => ({
+    orders: fetchOrdersFromFirebase(phone),
+  })),
 );
 
 const OrderList = ({ orders }: OrderListPropsType) => (

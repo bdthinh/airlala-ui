@@ -10,10 +10,12 @@ export const enterHomePage = () => (dispatch, getState) => {
   const state = getState();
   const token = currentUserTokenSelector(state);
   if (token) {
-    console.log('tokenInHomePage', token);
-    console.log('firebaseAuth.currentUser.uid', firebaseAuth.currentUser.uid);
     if (!firebaseAuth.currentUser) {
       loginWithToken(token);
+    }
+
+    if (history.location.pathname === '/') {
+      history.push('/orders');
     }
   }
 };

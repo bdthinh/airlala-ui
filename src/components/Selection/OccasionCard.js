@@ -57,6 +57,14 @@ const OCCASIONS = [
   'other',
 ];
 
+const OCCASION_BG_IMAGE = {
+  anniversary: '/img/anniversary_bg.jpg',
+  apology: '/img/apology_bg.jpg',
+  birthday: '/img/birthday_bg.jpg',
+  congratulations: '/img/congratulations_bg.jpg',
+  'thank you': '/img/thankyou_bg.jpg',
+};
+
 const spanRangeStyles = css`
   margin: 0 6px;
   border: 1px solid #E1E1E1;
@@ -87,7 +95,10 @@ const OccasionCard = ({ current, onChange }: OccasionCardPropsType) => (
       <Slider {...sliderSettings}>
         {OCCASIONS.map(occasion => (
           <span
-            style={occasion === current ? spanRangeCurrentStyles : spanRangeStyles}
+            style={occasion === current
+              ? { ...spanRangeCurrentStyles, background: `url(${OCCASION_BG_IMAGE[occasion]})` }
+              : { ...spanRangeStyles, background: `url(${OCCASION_BG_IMAGE[occasion]})` }
+            }
             key={occasion}
             onTouchTap={() => onChange(occasion)}
           >
