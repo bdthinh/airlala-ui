@@ -16,6 +16,9 @@ const {
     endpoint: REQUEST_UPDATE_ACCOUNT_ENDPOINT,
     method: 'PUT',
     body: data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 );
 

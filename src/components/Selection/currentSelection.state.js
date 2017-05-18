@@ -1,6 +1,13 @@
 import { combineReducers } from 'redux';
 import { handleAction } from 'redux-actions';
 import { over, always, path } from 'lodash/fp';
+import { makeFetchAction } from 'redux-api-call';
+import { createSelector } from 'reselect';
+
+import { REQUEST_GIFTS_ENDPOINT } from '../../endpoints';
+import {
+  currentUserPhoneSelector,
+} from '../SignUp/currentUser.state';
 
 const takePayload = (state, { payload }) => payload;
 
@@ -94,7 +101,6 @@ const relationship = handleAction(SET_RELATIONSHIP, takePayload, null);
 const location = handleAction(SET_LOCATION, takePayload, null);
 const occasion = handleAction(SET_OCCASION, takePayload, null);
 const priceRange = handleAction(SET_PRICE_RANGE, takePayload, '50,100');
-
 const tags = handleAction(
   SET_TAGS,
   (state, { payload }) => {
@@ -107,6 +113,33 @@ const tags = handleAction(
 );
 
 const details = handleAction(SET_DETAILS, takePayload, null);
+
+const bodySelector = createSelector(
+  currentSelectionSelector,
+  currentUserPhoneSelector,
+  (selection, phone) => JSON.stringify({
+    ...selection,
+    phone,
+    sex: 'female',
+  }),
+);
+
+const {
+  actionCreator: requestGifts,
+  dataSelector: requestGiftResponseSelector,
+} = makeFetchAction(
+  'REQUEST_GIFT',
+  () => ({
+    endpoint: REQUEST_GIFTS_ENDPOINT,
+    method: 'POST',
+    body: bodySelector,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+);
+
+export { requestGifts, requestGiftResponseSelector };
 
 const reducer = combineReducers({
   receiverName,

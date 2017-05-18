@@ -1,6 +1,6 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import { withProps } from 'recompose';
+import { connect } from 'react-redux';
 import css from 'css-template';
 
 import history from '../../state/history';
@@ -13,6 +13,8 @@ import BudgetCard from './BudgetCard';
 import StyleCard from './StyleCard';
 import DetailsCard from './DetailsCard';
 
+import { requestGifts } from './currentSelection.state';
+
 type SelectionPropsType = {
   onRequestGiftClick: Function,
 }
@@ -21,9 +23,15 @@ const buttonWrapperStyles = css`
   text-align: center;
 `;
 
-const enhance = withProps(() => ({
-  onRequestGiftClick: () => history.push('/select/prompt'),
-}));
+const enhance = connect(
+  null,
+  dispatch => ({
+    onRequestGiftClick: () => {
+      dispatch(requestGifts);
+      history.push('/select/prompt');
+    },
+  })
+);
 
 const selectionWrapperStyles = css`
   margin: 0 6px;

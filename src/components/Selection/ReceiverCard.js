@@ -119,6 +119,7 @@ type ReceiverCardPropsType = {
   isShownReceiverSelection: boolean,
   onChangeAges: Function,
   onChangeRelationship: Function,
+  receiverName: string,
   ages: string,
   relationship: string,
 };
@@ -148,6 +149,7 @@ const ReceiverCard = ({
   onChangeAges,
   onChangeRelationship,
   isShownReceiverSelection,
+  receiverName,
   ages,
   relationship,
 }: ReceiverCardPropsType) => (
@@ -162,7 +164,12 @@ const ReceiverCard = ({
         : <div>
           <div>
             To:&nbsp;
-            <TextField name="receiverName" hintText="  whom" onChange={onChangeReceiverName} />
+            <TextField
+              name="receiverName"
+              hintText="  whom"
+              onChange={onChangeReceiverName}
+              value={receiverName}
+            />
             <IconButton onTouchTap={onTouchTapCancel}>
               <ClearIcon />
             </IconButton>

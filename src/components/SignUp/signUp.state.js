@@ -18,6 +18,9 @@ const {
     endpoint: CREATE_USER_ENDPOINT,
     method: 'POST',
     body: JSON.stringify({ phone }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 );
 

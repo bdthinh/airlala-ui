@@ -15,6 +15,9 @@ const {
   (data: UserParamsType) => ({
     endpoint: LOGIN_USER_ENDPOINT,
     body: data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
 );
 
