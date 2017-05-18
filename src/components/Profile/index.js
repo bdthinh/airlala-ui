@@ -94,7 +94,7 @@ const Profile = ({
       <div style={fieldWrapperStyles}>
         EMAIL
         <div style={fieldStyles}>
-          {email || 'jinsherlock@gmail.com'}
+          {email || ''}
         </div>
       </div>
 

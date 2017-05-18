@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { handleAction } from 'redux-actions';
-import { over, always, path } from 'lodash/fp';
+import { flow, over, always, path } from 'lodash/fp';
 import { makeFetchAction } from 'redux-api-call';
 import { createSelector } from 'reselect';
 
@@ -12,6 +12,7 @@ import {
 const takePayload = (state, { payload }) => payload;
 
 const SET_RECEIVER_NAME = 'selection/actions/SET_RECEIVER_NAME';
+const SET_SEX = 'selection/actions/SET_SEX';
 const SET_AGE_RANGE = 'selection/actions/SET_AGE_RANGE';
 const SET_RELATIONSHIP = 'selection/actions/SET_RELATIONSHIP';
 const SET_LOCATION = 'selection/actions/SET_LOCATION';
@@ -22,6 +23,7 @@ const SET_DETAILS = 'selection/actions/SET_DETAILS';
 
 export const currentSelectionSelector = path('currentSelection');
 export const csReceiverNameSelector = path('currentSelection.receiverName');
+export const csSexSelector = path('currentSelection.sex');
 export const csAgesSelector = path('currentSelection.ages');
 export const csRelationshipSelector = path('currentSelection.relationship');
 export const csLocationSelector = path('currentSelection.location');
@@ -30,11 +32,19 @@ export const csPriceRangeSelector = path('currentSelection.priceRange');
 export const csTagsSelector = path('currentSelection.tags');
 export const csDetailsSelector = path('currentSelection.details');
 
-export const clearReceiverName = always({ type: SET_RECEIVER_NAME, payload: null });
+export const clearReceiverName = always({ type: SET_RECEIVER_NAME, payload: '' });
 export const changeReceiverName = name => ({
   type: SET_RECEIVER_NAME,
   payload: name,
 });
+
+
+export const clearSex = always({ type: SET_SEX, payload: 'female' });
+export const changeSex = sex => ({
+  type: SET_SEX,
+  payload: sex,
+});
+
 export const clearAges = always({ type: SET_AGE_RANGE, payload: null });
 export const changeAges = ages => ({
   type: SET_AGE_RANGE,
@@ -72,7 +82,7 @@ export const chooseTag = tag => ({
   payload: tag,
 });
 
-export const clearDetails = always({ type: SET_DETAILS, payload: null });
+export const clearDetails = always({ type: SET_DETAILS, payload: '' });
 export const setDetails = details => ({
   type: SET_DETAILS,
   payload: details,
@@ -80,6 +90,7 @@ export const setDetails = details => ({
 
 export const clearSelection = over([
   clearReceiverName,
+  clearSex,
   clearAges,
   clearRelationship,
   clearLocation,
@@ -91,11 +102,13 @@ export const clearSelection = over([
 
 export const clearReceiver = over([
   clearReceiverName,
+  clearSex,
   clearAges,
   clearRelationship,
 ]);
 
-const receiverName = handleAction(SET_RECEIVER_NAME, takePayload, null);
+const receiverName = handleAction(SET_RECEIVER_NAME, takePayload, '');
+const sex = handleAction(SET_SEX, takePayload, 'female');
 const ages = handleAction(SET_AGE_RANGE, takePayload, null);
 const relationship = handleAction(SET_RELATIONSHIP, takePayload, null);
 const location = handleAction(SET_LOCATION, takePayload, null);
@@ -112,7 +125,7 @@ const tags = handleAction(
   [],
 );
 
-const details = handleAction(SET_DETAILS, takePayload, null);
+const details = handleAction(SET_DETAILS, takePayload, '');
 
 const bodySelector = createSelector(
   currentSelectionSelector,
@@ -120,13 +133,13 @@ const bodySelector = createSelector(
   (selection, phone) => JSON.stringify({
     ...selection,
     phone,
-    sex: 'female',
+    receiverImage: '',
   }),
 );
 
 const {
   actionCreator: requestGifts,
-  dataSelector: requestGiftResponseSelector,
+  dataSelector: orderResponseSelector,
 } = makeFetchAction(
   'REQUEST_GIFT',
   () => ({
@@ -139,10 +152,13 @@ const {
   })
 );
 
-export { requestGifts, requestGiftResponseSelector };
+export { requestGifts, orderResponseSelector };
+
+export const orderKeySelector = flow(orderResponseSelector, path('orderKey'));
 
 const reducer = combineReducers({
   receiverName,
+  sex,
   ages,
   relationship,
   location,

@@ -1,23 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withProps, compose } from 'recompose';
-import { createStructuredSelector } from 'reselect';
 import RaisedButton from 'material-ui/RaisedButton';
 import DoneIcon from 'material-ui/svg-icons/action/done';
 import css from 'css-template';
 
 import history from '../../state/history';
-import { currentSelectionSelector } from './selection.state';
+
+import {
+  currentSelectionSelector,
+  orderKeySelector,
+} from './currentSelection.state';
 import type { OrderType } from '../../types/Order';
+
 import OrderCard from '../Order/OrderCard';
 import AnnouncementCard from './AnnouncementCard';
 
-const mapStateToProps = createStructuredSelector({
-  order: currentSelectionSelector,
-});
-
 const enhance = compose(
-  connect(mapStateToProps),
+  connect(
+    state => ({
+      order: {
+        ...currentSelectionSelector(state),
+        status: 'looking',
+        key: orderKeySelector(state),
+      },
+    })
+  ),
   withProps(() => ({
     onCheckTouchTap: () => history.push('/orders'),
   })),

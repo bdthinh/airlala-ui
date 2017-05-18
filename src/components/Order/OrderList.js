@@ -1,9 +1,15 @@
 import React from 'react';
 import css from 'css-template';
-import { map } from 'lodash/fp';
+import { map } from 'lodash';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
 
 import type { OrderType } from '../../types/Order';
 import OrderCard from './OrderCard';
+
+import { fetchOrdersFromFirebase } from '../../firebase/orders.state';
+
+import { currentUserPhoneSelector } from '../SignUp/currentUser.state';
 
 const wrapperCardsStyles = css`{
   max-width: 700px;
@@ -17,12 +23,23 @@ type OrderListPropsType = {
   orders: Array<OrderType>,
 };
 
+const enhance = compose(
+  connect(
+    state => ({
+      orders: fetchOrdersFromFirebase(currentUserPhoneSelector(state)),
+    }),
+  ),
+);
+
 const OrderList = ({ orders }: OrderListPropsType) => (
   <div style={wrapperCardsStyles}>
-    {map((order, key) => (
-      <OrderCard order={{ ...order, key }} />
-    ), orders)}
+    {map(orders, (order, key) => (
+      <OrderCard
+        key={key}
+        order={{ ...order, key }}
+      />
+    ))}
   </div>
 );
 
-export default OrderList;
+export default enhance(OrderList);

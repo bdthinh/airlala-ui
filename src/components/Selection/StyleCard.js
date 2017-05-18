@@ -57,6 +57,7 @@ const StylesCard = ({ current, onChange }: StylesCardPropsType) => (
     <div style={contentStyles}>
       {TAGS.map(tag => (
         <Chip
+          key={tag}
           backgroundColor={current.indexOf(tag) !== -1 ? lightBlue200 : grey50}
           onTouchTap={() => onChange(tag)}
         >

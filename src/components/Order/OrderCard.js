@@ -3,6 +3,7 @@ import { Card, CardActions } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import css from 'css-template';
 import { withProps } from 'recompose';
+import { capitalize } from 'lodash/fp';
 
 import AvatarWithName from '../Layout/SmallAvatarWithName';
 import type { OrderType } from '../../types/Order';
@@ -49,6 +50,7 @@ const enhance = withProps(({ order: { key } }) => ({
 
 const OrderCard = ({
   order: {
+    key,
     occasion,
     priceRange,
     receiverName,
@@ -61,12 +63,13 @@ const OrderCard = ({
       <AvatarWithName name={receiverName} />
       <div style={textStyles}>
         <div style={nameStyles}>{receiverName}</div>
-        <div style={infoStyles}>{occasion} | {displayPrice(priceRange)}</div>
+        <div style={infoStyles}>{capitalize(occasion)} | {displayPrice(priceRange)}</div>
       </div>
       <CardActions>
         <RaisedButton
           primary
           label={status}
+          disabled={!key}
           onTouchTap={onTouchTapAction}
         />
       </CardActions>

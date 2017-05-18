@@ -8,8 +8,8 @@ import history from '../../state/history';
 import Introduction from '../Introduction';
 import IntroductionSlider from '../Introduction/Slider';
 import Order from '../Order';
-import OrderDetails from '../OrderDetails/Sample';
-import SelectionPrompt from '../Selection/ExamplePrompt';
+import OrderDetails from '../OrderDetails';
+import SelectionPrompt from '../Selection/Prompt';
 import Chat from '../Chat';
 import SignUp from '../SignUp';
 import Verification from '../Verification';
@@ -33,7 +33,11 @@ const connectToRedux = connect(
 );
 
 const pureLayoutStyles = css`
-  background: url('/airlala-bg.png');
+  background: url('/airlala-bg.png') no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   min-height: 100vh;
 `;
 

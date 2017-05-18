@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import css from 'css-template';
 import { Card } from 'material-ui/Card';
 import { capitalize } from 'lodash/fp';
+import Slider from 'react-slick';
 
 import {
   changeOccasion,
@@ -29,6 +30,15 @@ const contentStyles = css`
 type OccasionCardPropsType = {
   current: string,
   onChange: Function,
+};
+
+const sliderSettings = {
+  infinite: false,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 2,
+  arrows: false,
+  draggable: true,
 };
 
 const enhance = connect(
@@ -62,15 +72,17 @@ const spanRangeCurrentStyles = css`
 const OccasionCard = ({ current, onChange }: OccasionCardPropsType) => (
   <Card style={cardStyles}>
     <div style={contentStyles}>
-      {OCCASIONS.map(occasion => (
-        <span
-          style={occasion === current ? spanRangeCurrentStyles : spanRangeStyles}
-          key={occasion}
-          onTouchTap={() => onChange(occasion)}
-        >
-          {capitalize(occasion)}
-        </span>
-      ))}
+      <Slider {...sliderSettings}>
+        {OCCASIONS.map(occasion => (
+          <span
+            style={occasion === current ? spanRangeCurrentStyles : spanRangeStyles}
+            key={occasion}
+            onTouchTap={() => onChange(occasion)}
+          >
+            {capitalize(occasion)}
+          </span>
+        ))}
+      </Slider>
     </div>
   </Card>
 );

@@ -1,11 +1,14 @@
 import React from 'react';
-import { withProps } from 'recompose';
+import { withProps, compose } from 'recompose';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Step, Stepper, StepLabel, StepContent } from 'material-ui/Stepper';
 import DoneIcon from 'material-ui/svg-icons/action/done';
 import css from 'css-template';
+import { negate, path } from 'lodash/fp';
 
 import history from '../../state/history';
+import spinner from '../../utils/spinner';
+
 
 import type { OrderType } from '../../types/Order';
 import { fetchOrderFromFirebase } from '../../firebase/orders.state';
@@ -47,10 +50,20 @@ const stepperWrapperStyles = css`
   margin: 0 36px;
 `;
 
-const enhance = withProps(({ orderKey }) => ({
+
+const enhanceProps = withProps(({ orderKey }) => ({
   order: fetchOrderFromFirebase(orderKey),
   onCheckTouchTap: () => history.push('/orders'),
 }));
+
+
+const enhance = compose(
+  enhanceProps,
+  spinner(
+    () => {},
+    negate(path('order')),
+  ),
+);
 
 const displayPrice = range => `$${range.split(',')[0]} - ${range.split(',')[1]}`;
 

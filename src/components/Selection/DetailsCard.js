@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import {
   setDetails,
+  csDetailsSelector,
 } from './currentSelection.state';
 
 const cardStyles = css`
@@ -25,17 +26,21 @@ const contentStyles = css`
 `;
 
 type DetailsCardPropsType = {
+  current: string,
   onChange: Function,
 };
 
 const enhance = connect(
-  null,
+  state => ({
+    current: csDetailsSelector(state),
+  }),
   {
     onChange: (event, value) => setDetails(value),
   }
 );
 
 const DetailsCard = ({
+  current,
   onChange,
 }: DetailsCardPropsType) => (
   <Card style={cardStyles}>
@@ -44,6 +49,7 @@ const DetailsCard = ({
       <TextField
         name="details"
         hintText=""
+        value={current}
         onChange={onChange}
         multiLine
         rows={4}

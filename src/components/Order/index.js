@@ -6,7 +6,9 @@ import { withProps } from 'recompose';
 import TopNavigation from '../Layout/TopNavigation';
 import ProfileButton from './ProfileButton';
 import ChatButton from '../Layout/ChatButton';
-import OrderList from './ExampleOrderList';
+import OrderList from './OrderList';
+
+import history from '../../state/history';
 
 type OrderPropsType = {
   onSelectionTouchTap: Function,

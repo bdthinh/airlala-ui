@@ -21,13 +21,14 @@ type SelectionPropsType = {
 
 const buttonWrapperStyles = css`
   text-align: center;
+  margin-bottom: 24px;
 `;
 
 const enhance = connect(
   null,
   dispatch => ({
     onRequestGiftClick: () => {
-      dispatch(requestGifts);
+      dispatch(requestGifts());
       history.push('/select/prompt');
     },
   })

@@ -1,8 +1,29 @@
 import { firebaseAuth, firebaseDatabase } from '../state/firebase';
 
-export const fetchOrderFromFirebase = (orderId) => {
+export const fetchOrderFromFirebase = (orderKey) => {
   const currentUser = firebaseAuth.currentUser;
-  return firebaseDatabase.ref(`users/${currentUser.uid}/orders/${orderId}`);
+
+  const ref = firebaseDatabase.ref(`/users/${currentUser.uid}/orders/${orderKey}`);
+  let order;
+  ref.on('value', (snapshot) => {
+    order = snapshot.val();
+  });
+  return order;
 };
+
+export const fetchOrdersFromFirebase = () => {
+  const currentUser = firebaseAuth.currentUser;
+  console.log('currentUser.uid', currentUser.uid);
+  const ref = firebaseDatabase.ref(`/users/${currentUser.uid}/orders`);
+
+  let orders;
+  ref.on('value', (snapshot) => {
+    orders = snapshot.val();
+  });
+  console.log('orders', orders);
+
+  return orders;
+};
+
 
 export default {};
