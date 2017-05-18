@@ -4,6 +4,7 @@ import { withProps, compose } from 'recompose';
 import RaisedButton from 'material-ui/RaisedButton';
 import DoneIcon from 'material-ui/svg-icons/action/done';
 import css from 'css-template';
+import { path } from 'lodash/fp';
 
 import history from '../../state/history';
 
@@ -65,6 +66,7 @@ const Prompt = ({
       <RaisedButton
         primary
         icon={<DoneIcon />}
+        disabled={!path('key', order)}
         onTouchTap={onCheckTouchTap}
       />
     </div>

@@ -44,8 +44,14 @@ const infoStyles = css`
   font-weight: 200;
 `;
 
-const enhance = withProps(({ order: { key } }) => ({
-  onTouchTapAction: () => history.push(`/orders/${key}`),
+const enhance = withProps(({ order: { key, status } }) => ({
+  onTouchTapAction: () => {
+    if (status === 'Gifts Ready') {
+      history.push(`/orders/${key}/gifts`);
+    } else {
+      history.push(`/orders/${key}`);
+    }
+  },
 }));
 
 const OrderCard = ({
