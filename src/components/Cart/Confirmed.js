@@ -2,9 +2,11 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import DoneIcon from 'material-ui/svg-icons/action/done';
 import css from 'css-template';
+import { connect } from 'react-redux';
 
 import history from '../../state/history';
 import ConfirmedCard from './ConfirmedCard';
+import { clearCart } from '../Cart/cart.state';
 
 const cardAnnouncementStyles = css`
   margin: 0 6px;
@@ -19,7 +21,21 @@ const buttonWrapperStyles = css`
   text-align: center;
 `;
 
-const Confirmed = () => (
+type ConfirmedPropsType = {
+  onDoneTouchTap: Function,
+};
+
+const enhance = connect(
+  null,
+  dispatch => ({
+    onDoneTouchTap: () => {
+      dispatch(clearCart());
+      history.push('/orders');
+    },
+  })
+);
+
+const Confirmed = ({ onDoneTouchTap }: ConfirmedPropsType) => (
   <div>
     <div style={cardAnnouncementStyles}>
       <ConfirmedCard />
@@ -29,10 +45,10 @@ const Confirmed = () => (
       <RaisedButton
         primary
         icon={<DoneIcon />}
-        onTouchTap={() => history.push('/orders')}
+        onTouchTap={onDoneTouchTap}
       />
     </div>
   </div>
 );
 
-export default Confirmed;
+export default enhance(Confirmed);
