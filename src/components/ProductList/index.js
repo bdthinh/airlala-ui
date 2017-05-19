@@ -50,6 +50,7 @@ type GiftType = {
 };
 
 type ProductListPropsType = {
+  orderKey: string,
   gifts: Array<GiftType>,
   cartItems: Array<GiftType>,
   cartItemsCount: number,
@@ -137,6 +138,7 @@ const cartIconStyles = css`
 `;
 
 const ProductList = ({
+  orderKey,
   gifts,
   cartItems,
   onToggleCart,
@@ -200,7 +202,7 @@ const ProductList = ({
         </Badge>
       }
     </div>
-    <Cart />
+    <Cart orderKey={orderKey} />
   </div>
 );
 

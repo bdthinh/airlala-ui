@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { flow, isEmpty } from 'lodash/fp';
 
 import history from '../../state/history';
+import { confirmOrder } from '../../firebase/orders.state';
 
 import EmptyCart from './EmptyCart';
 import {
@@ -74,10 +75,11 @@ const connectToRedux = connect(
     open: isShownCartSelector(state),
     items: cartItemsSelector(state),
   }),
-  dispatch => ({
+  (dispatch, props) => ({
     onToggleCart: flow(toggleCart, dispatch),
     onCheckoutTouchTap: () => {
       history.push('/confirmed');
+      confirmOrder(props.orderKey);
     },
   }),
 );
