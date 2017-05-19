@@ -5,14 +5,10 @@ import Badge from 'material-ui/Badge';
 import { withProps, compose } from 'recompose';
 import { connect } from 'react-redux';
 import { map } from 'lodash';
-import { find, negate, path } from 'lodash/fp';
 import css from 'css-template';
 import CartIcon from 'material-ui/svg-icons/action/shopping-cart';
 
 import './index.css';
-
-import spinner from '../../utils/spinner';
-import { fetchOrderFromFirebase } from '../../firebase/orders.state';
 
 import TopNavigation from '../Layout/TopNavigation';
 import ChatButton from '../Layout/ChatButton';
@@ -20,7 +16,6 @@ import Cart from '../Cart';
 import {
   toggleCart,
   addToCart,
-  removeCart,
   cartItemsSelector,
 } from '../Cart/cart.state';
 
@@ -51,39 +46,41 @@ type GiftType = {
 
 type ProductListPropsType = {
   gifts: Array<GiftType>,
-  cartItems: Array<GiftType>,
-  cartItemsCount: number,
   onToggleCart: Function,
   onTakeThisTouchTap: Function,
-  onThinkAgainTouchTap: Function,
+  cartItemsCount: number,
 };
 
 const connectToRedux = connect(
   state => ({
     cartItemsCount: cartItemsSelector(state).length,
-    cartItems: cartItemsSelector(state),
   }),
   {
     onToggleCart: toggleCart,
     onTakeThisTouchTap: product => addToCart(product),
-    onThinkAgainTouchTap: product => removeCart(product),
   }
 );
 
 const enhanceProps = withProps(({ orderKey }) => ({
-  order: fetchOrderFromFirebase(orderKey),
+  gifts: {
+    1: {
+      name: 'The 3xu love matchbox',
+      image: 'https://firebasestorage.googleapis.com/v0/b/airlala-7b1b2/o/products%2F-KkGEbkYrmtIuWh97Hwb.jpg?alt=media&token=6ef37e78-48d8-45c0-b6eb-45e0b22fc97b',
+      price: '$2.00',
+      description: 'Handmade products are designed uniquely and creatively. It is used to decorate or giving your loved ones the most unique things. Made in Vietnam',
+    },
+    2: {
+      name: 'The Authentique classic teapot',
+      image: 'https://firebasestorage.googleapis.com/v0/b/airlala-7b1b2/o/products%2F-KkGEg7EBsn9fCEaw56w.jpg?alt=media&token=b6fd8bcf-9299-4c88-895a-0c42598b6d36',
+      price: '$40.00',
+      description: 'Vietnamese ceramics don’t have mean to ancient Vietnamese ceramics. The look and texture of the ceramics is based on the old, new drawings, the flowers are hand painted with palm, each stroke. They want to retain the spirit and charm of ancient Vietnam. Products designed by Authentique. All Authentique products are handmade from artist’s hands with all the heart and their dedication. Made in VietNam',
+    },
+  },
 }));
 
 const enhance = compose(
   connectToRedux,
   enhanceProps,
-  spinner(
-    () => {},
-    negate(path('order')),
-  ),
-  withProps(({ order }) => ({
-    gifts: path('gifts', order),
-  })),
 );
 
 const nameStyles = css`
@@ -138,11 +135,9 @@ const cartIconStyles = css`
 
 const ProductList = ({
   gifts,
-  cartItems,
   onToggleCart,
   onTakeThisTouchTap,
   cartItemsCount,
-  onThinkAgainTouchTap,
 }: ProductListPropsType) => (
   <div>
     <TopNavigation
@@ -152,28 +147,20 @@ const ProductList = ({
     />
 
     <div style={{ padding: '12px 24px' }} className="product-list">
-      {gifts && <Slider {...sliderSettings}>
+      <Slider {...sliderSettings}>
         {
-          map(gifts, (gift, key) => (
+          gifts && map(gifts, (gift, key) => (
             <div key={key}>
               <div style={{ padding: '6px' }}>
                 <img style={{ maxWidth: '100%' }} src={gift.image} alt={gift.name} />
                 <div style={{ textAlign: 'center' }}>
                   <div style={nameStyles}>{gift.name}</div>
                   <div style={priceStyles}>{gift.price}</div>
-                  {
-                    find(item => item.key === key, cartItems) ?
-                      <FlatButton
-                        label="Think again"
-                        style={takeThisStyles}
-                        onTouchTap={() => onThinkAgainTouchTap({ ...gift, key })}
-                      /> :
-                      <FlatButton
-                        label="Take this"
-                        style={takeThisStyles}
-                        onTouchTap={() => onTakeThisTouchTap({ ...gift, key })}
-                      />
-                  }
+                  <FlatButton
+                    label="Take this"
+                    style={takeThisStyles}
+                    onTouchTap={() => onTakeThisTouchTap({ ...gift, key })}
+                  />
                 </div>
 
                 <div style={detailsHeaderStyles}>
@@ -187,7 +174,7 @@ const ProductList = ({
             </div>
           ))
         }
-      </Slider>}
+      </Slider>
       {cartItemsCount === 0
         ? <div style={cartIconStyles}><CartIcon onTouchTap={onToggleCart} /></div>
         : <Badge

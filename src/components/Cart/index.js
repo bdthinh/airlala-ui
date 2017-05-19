@@ -76,7 +76,9 @@ const connectToRedux = connect(
   }),
   dispatch => ({
     onToggleCart: flow(toggleCart, dispatch),
-    onCheckoutTouchTap: () => history.push('/confirmed'),
+    onCheckoutTouchTap: () => {
+      history.push('/confirmed');
+    },
   }),
 );
 
