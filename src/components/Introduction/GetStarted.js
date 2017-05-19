@@ -36,9 +36,9 @@ const GetStarted = () => (
     <h1 style={headerStyles}>
       AirLaLa
     </h1>
-    <h4 style={subHeaderStyles}>Gift wonderfully</h4>
+    <h4 style={subHeaderStyles}>Fabulous Experience</h4>
     <p style={contentStyles}>
-      AirLaLa is simple, sopisticated way to take incredibly thoughtful local products.
+      AirLaLa is simple, sopisticated way to source incredibly thoughtful local products.
     </p>
 
     <Link to="/getStarted" style={linkStyles}>
