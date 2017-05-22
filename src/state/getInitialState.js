@@ -1,7 +1,7 @@
 /* @flow */
 import uuid from 'uuid';
 
-const DEVICE_ID_KEY = 'MarketOi::deviceId';
+const DEVICE_ID_KEY = 'appName::deviceId';
 
 const getDeviceId = () => {
   const deviceId = localStorage.getItem(DEVICE_ID_KEY) || uuid();

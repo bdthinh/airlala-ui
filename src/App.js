@@ -4,22 +4,9 @@ import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { persistStore } from 'redux-persist';
 import { compose, withState, lifecycle } from 'recompose';
-
-import Layout from './components/Layout';
-
-import THEME_CONFIG from './config/theme.json';
-
-const theme = {
-  appBar: {
-    color: THEME_CONFIG.colors.bar,
-  },
-  palette: {
-    primary1Color: THEME_CONFIG.colors.primary,
-    accent1Color: THEME_CONFIG.colors.secondary,
-  },
-};
 
 type AppPropsType = {
   store: any,
@@ -29,17 +16,17 @@ type AppPropsType = {
 
 const App = ({ store, rehydrated }: AppPropsType) => (
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
+    <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
       {rehydrated ? <div name="application">
         <Helmet
-          defaultTitle="MarketOI"
-          title="MarketOI"
+          defaultTitle="appName"
+          title="appName"
           links={[
             { rel: 'shortcut icon', type: 'image/png', href: '/favicon.png' },
           ]}
         />
 
-        <Layout />
+        Hello from React app
       </div> : null}
     </MuiThemeProvider>
   </Provider>
@@ -52,7 +39,7 @@ const enhance = compose(
       // eslint-disable-next-line immutable/no-this
       persistStore(
         this.props.store,
-        { whitelist: ['cart', 'locationsDialog', 'session'] },
+        { whitelist: [] },
         () => {
           this.props.completeRehydrated(true);
         },
