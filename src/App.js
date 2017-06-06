@@ -2,9 +2,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { persistStore } from 'redux-persist';
 import { compose, withState, lifecycle } from 'recompose';
 
@@ -13,11 +10,13 @@ type AppPropsType = {
   rehydrated: boolean,
 };
 
+const renderNothing = <div />;
 
 const App = ({ store, rehydrated }: AppPropsType) => (
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-      {rehydrated ? <div name="application">
+    {
+      rehydrated
+      ? <div name="application">
         <Helmet
           defaultTitle="appName"
           title="appName"
@@ -25,10 +24,10 @@ const App = ({ store, rehydrated }: AppPropsType) => (
             { rel: 'shortcut icon', type: 'image/png', href: '/favicon.png' },
           ]}
         />
-
         Hello from React app
-      </div> : null}
-    </MuiThemeProvider>
+      </div>
+      : renderNothing
+    }
   </Provider>
 );
 
