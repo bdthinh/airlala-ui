@@ -107,4 +107,65 @@ AIRLALA Database uses FIREBASE, a key-value DATABASE. Every __table__ has primar
 |orders|Firebase array|`{ products: { productKey, price, quantity, status }, payment: {} }`|order created while user process checkout any products in his/her request|
 |status|enum|`PreOrder\|Ordered\|Shipping\|Delivered`|processing status of the order|
 
+#### Schema
+![AIRLALA Schema](https://firebasestorage.googleapis.com/v0/b/airlala-7b1b2.appspot.com/o/Screen%20Shot%202017-07-04%20at%2000.44.15.png?alt=media&token=86e304dc-5211-48e1-864a-3cfcebd37a09)
+
 ### <a name="business-flow">Business Flow</a>
+Scenarios:
+- [x] Sign up(#signup-scenario)
+- [x] Login(#login-scenario)
+- [x] Edit profile(#edit-profile-scenario)
+- [x] Profile(#profile-scenario)
+- [ ] Request gifts(#request-gifts-scenario)
+- [x] View requests(#view-requests-scenario)
+- [ ] View request status(#view-request-status-scenario)
+- [ ] View gifts when request's gifts are ready(#view-gifts-scenario)
+- [ ] Checkout(#checkout-scenario)
+- [ ] Confirm order(#confirm-order-scenario)
+- [ ] Additional checkout(#additional-checkout-scenario)
+
+**<a name="signup-scenario">SIGN UP</a>**
+
+> Given I am a traveller  
+> And I know about airlala.com  
+> When I visit airlala homepage  
+> Then I should be able to get started sign up with my phone number  
+> Or I should be able to sign up with my Facebook/ Twitter account  
+
+**<a name="login-scenario">LOGIN</a>**
+
+> Given I am a traveller  
+> And I just sign up with my phone number  
+> Then I should receive 4-digits code to my phone via SMS from Twillo  
+> Then I should be able to fill in 4-digits code to login  
+> Then I should be redirected to Edit Profile page for the first time login  
+> Or I should be redirect to Requests page  
+
+> Given I am a traveller  
+> And I just sign up with my Facebook/ Twitter account  
+> Then I should be redirected to Edit Profile page for the first time login  
+> Or I should be redirect to Requests page  
+
+**<a name="edit-profile-scenario">EDIT PROFILE</a>**
+
+> Given I logged in as traveller  
+> And I am forward to Edit Profile page  
+> Then I should be able to edit my information: email, password, firstName, lastName  
+> When I save my information  
+> Then I should be forward to Requests page  
+
+**<a name="profile-scenario">PROFILE</a>**
+
+> Given I logged in as traveller  
+> And I am at profile page  
+> Then I should view my current information  
+> And I should be able to go to EDIT PROFILE page  
+> And I should be able to go to TOS, FAQ,... page  
+
+**<a name="view-requests-scenario">VIEW REQUESTS</a>**
+> Given I logged in as traveller  
+> And I am at Requests page  
+> Then I should be able to view my requests  
+> And I should be able to request gifts  
+> When I request gift
+> Then I should be forward to REQUEST page
