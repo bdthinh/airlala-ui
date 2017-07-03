@@ -4,7 +4,6 @@ AIRLALA-UI was bootstrapped with [Create React App](https://github.com/facebooki
 - [What is AIRLALA](#what-is-airlala)
 - [Platform](#platform)
 - [How to run AIRLALA-UI](#how-to-run-airlala-ui)
-- [Build AIRLALA from scratch](#build-airlala-from-scratch)
 - [DATABASE design](#database)
 - [Business flow](#business-flow)
 - [Development Team](#development-team)
@@ -39,9 +38,6 @@ AIRLALA-UI is created by `create-react-app` and packages managed with `yarn`.
 yarn
 yarn start
 ```
-
-### <a name="build-airlala-from-scratch">Build AIRLALA from scratch</a>
-...in construction
 
 ### <a name="database">DATABASE design</a>
 AIRLALA Database uses FIREBASE, a key-value DATABASE. Every __table__ has primary key as a unique key.
