@@ -6,6 +6,8 @@ AIRLALA-UI was bootstrapped with [Create React App](https://github.com/facebooki
 - [How to run AIRLALA-UI](#how-to-run-airlala-ui)
 - [DATABASE design](#database)
 - [Business flow](#business-flow)
+- [Design](#design)
+- [Videos demo](#videos-demo)
 - [Development Team](#development-team)
   - [Hiep Tran](https://github.com/kaeljune)
   - [Thinh Bui](https://github.com/bdthinh)
@@ -224,3 +226,11 @@ Scenarios:
 > When I am at VIEW REQUESTS page  
 > Then I should be able to VIEW PRODUCTS of any request  
 > And I can make other checkouts and confirmation  
+
+
+## <a name="design">DESIGN</a>
+View here: https://xd.adobe.com/view/bf84c526-1f9b-4c90-970a-6a59b52cb45c/
+
+## <a name="videos-demo">VIDEOS DEMO</a>
+View here: https://drive.google.com/drive/folders/0B5jzNc_rTLUtXzFreUNNWmtFd1E
+
