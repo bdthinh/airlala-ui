@@ -108,17 +108,17 @@ AIRLALA Database uses FIREBASE, a key-value DATABASE. Every __table__ has primar
 
 ### <a name="business-flow">Business Flow</a>
 Scenarios:
-- [x] Sign up(#signup-scenario)
-- [x] Login(#login-scenario)
-- [x] Edit profile(#edit-profile-scenario)
-- [x] Profile(#profile-scenario)
-- [x] Request gifts(#request-gifts-scenario)
-- [x] View requests(#view-requests-scenario)
-- [x] View request status(#view-request-status-scenario)
-- [x] View gifts when request's gifts are ready(#view-gifts-scenario)
-- [x] Checkout(#checkout-scenario)
-- [x] Confirm order(#confirm-order-scenario)
-- [x] Additional checkout(#additional-checkout-scenario)
+- [x] [Sign up](#signup-scenario)
+- [x] [Login](#login-scenario)
+- [x] [Edit profile](#edit-profile-scenario)
+- [x] [Profile](#profile-scenario)
+- [x] [Request gifts](#request-gifts-scenario)
+- [x] [View requests](#view-requests-scenario)
+- [x] [View request status](#view-request-status-scenario)
+- [x] [View gifts when request's gifts are ready](#view-gifts-scenario)
+- [x] [Checkout](#checkout-scenario)
+- [x] [Confirm order](#confirm-order-scenario)
+- [x] [Additional checkout](#additional-checkout-scenario)
 
 **<a name="signup-scenario">SIGN UP</a>**
 
