@@ -112,13 +112,13 @@ Scenarios:
 - [x] Login(#login-scenario)
 - [x] Edit profile(#edit-profile-scenario)
 - [x] Profile(#profile-scenario)
-- [ ] Request gifts(#request-gifts-scenario)
+- [x] Request gifts(#request-gifts-scenario)
 - [x] View requests(#view-requests-scenario)
-- [ ] View request status(#view-request-status-scenario)
-- [ ] View gifts when request's gifts are ready(#view-gifts-scenario)
-- [ ] Checkout(#checkout-scenario)
-- [ ] Confirm order(#confirm-order-scenario)
-- [ ] Additional checkout(#additional-checkout-scenario)
+- [x] View request status(#view-request-status-scenario)
+- [x] View gifts when request's gifts are ready(#view-gifts-scenario)
+- [x] Checkout(#checkout-scenario)
+- [x] Confirm order(#confirm-order-scenario)
+- [x] Additional checkout(#additional-checkout-scenario)
 
 **<a name="signup-scenario">SIGN UP</a>**
 
@@ -159,9 +159,68 @@ Scenarios:
 > And I should be able to go to TOS, FAQ,... page  
 
 **<a name="view-requests-scenario">VIEW REQUESTS</a>**
+
 > Given I logged in as traveller  
 > And I am at Requests page  
 > Then I should be able to view my requests  
 > And I should be able to request gifts  
 > When I request gift
 > Then I should be forward to REQUEST page
+
+**<a name="request-gifts-scenario">REQUEST GIFTS</a>**
+
+> Given I logged in as traveller  
+> And I just action request gifts in VIEW REQUESTS page  
+> Then I should be forward to REQUEST page  
+> Then I should see a lot of criteria to get the gifts recommendation: receiver's `name`, `age`, `sex`, `photo`, `phone`, `styles`, and `interests`; gift by `occasion`; `relationship` with receiver; `priceRange` of gifts; and even `details` about the gifts or occasion to gift  
+> And after I choose/ fill in all of criteria  
+> Then my request should be created and processed  
+> And I only need to wait the recommendation  
+> And I would be forwarded to VIEW REQUESTS page  
+
+**<a name="view-request-status-scenario">VIEW REQUEST STATUS</a>**
+
+> Given I logged in as traveller  
+> And I am at VIEW REQUESTS page  
+> Then I should be able to view my request status  
+> When I click on REQUEST to view request status  
+> Then I should be forwarded to REQUEST STATUS page  
+> And I should see the information and status of my request: request gifts to whom, request is in `LOOKING`, `GIFTS READY`, `ORDERED`, `SHIPPING`, or `DELIVERED`  
+
+**<a name="view-gifts-scenario">VIEW GIFTS WHEN REQUEST'S GIFTS ARE READY</a>**
+
+> Given I requested gifts  
+> And I am waiting for the recommendation  
+> When the recommendation is ready  
+> Then I should be notified that GIFTS ARE READY  
+> Then I should be able to view the recommendation  
+> When I click on `GIFTS ARE READY` REQUEST  
+> Then I should be forwarded to PRODUCTS page  
+> And I should see a list of products with images, description in details, and price  
+> And I should be able to check them out directly  
+
+**<a name="checkout-scenario">CHECKOUT</a>**
+
+> Given I am at PRODUCT page  
+> When I choose a product to check it out  
+> Then I should see a cart with my items inside  
+> And I should see the quantity and current price of each items along with total cost  
+> Then I should see the CONFIRM ORDER action  
+
+**<a name="confirm-order-scenario">CONFIRM ORDER</a>**
+
+> Given I checked out some items  
+> When I choose action CONFIRM ORDER  
+> Then my order should be locked with quantity and price of each item in order IN AN AMOUNT OF TIME  
+> And I should be fowarded to PAYMENT page to put in shipping address and choose kind of payment  
+> When I fill in all of fields  
+> Then my order should be created and processed   
+> And I should be forward to REQUEST DETAILS page  
+
+**<a name="additional-checkout-scenario">ADDITIONAL CHECKOUT</a>**
+
+> Given I finished ordering items  
+> And I have desire to order more items from old recommendation  
+> When I am at VIEW REQUESTS page  
+> Then I should be able to VIEW PRODUCTS of any request  
+> And I can make other checkouts and confirmation  
